@@ -1,0 +1,48 @@
+# Table of contents
+
+* [Sail Documentation](README.md)
+
+## Protocol
+
+* [Overview](protocol/README.md)
+* [Concepts](protocol/concepts/README.md)
+  * [Separately Managed Accounts](protocol/concepts/smas.md)
+  * [The three roles](protocol/concepts/roles.md)
+  * [The mandate & selective dispatch](protocol/concepts/mandate.md)
+  * [The four evaluation guarantees](protocol/concepts/evaluation-guarantees.md)
+  * [Deterministic deployment](protocol/concepts/deterministic-deployment.md)
+  * [Glossary](protocol/concepts/glossary.md)
+* [Architecture](protocol/architecture/README.md)
+  * [SailKernel](protocol/architecture/kernel.md)
+  * [SailGovernance & Timelock](protocol/architecture/governance.md)
+  * [MandateFactory](protocol/architecture/mandate-factory.md)
+  * [SafeModuleEnabler](protocol/architecture/safe-module-enabler.md)
+  * [Single & batch dispatch](protocol/architecture/dispatch.md)
+* [Permission system](protocol/permissions/README.md)
+  * [IPermission & Context](protocol/permissions/ipermission.md)
+  * [Full expressiveness](protocol/permissions/expressiveness.md)
+  * [Shared multi-tenant templates](protocol/permissions/shared-templates.md)
+  * [Permission lifecycle](protocol/permissions/lifecycle.md)
+  * [Extension interfaces](protocol/permissions/extensions.md)
+* [Guides](protocol/guides/README.md)
+  * [Write your first permission](protocol/guides/write-a-permission.md)
+  * [Deploy an SMA](protocol/guides/deploy-an-sma.md)
+  * [Register a mandate & appoint a manager](protocol/guides/register-a-mandate.md)
+  * [Dispatch a transaction within bounds](protocol/guides/dispatch.md)
+  * [Use a shared template](protocol/guides/use-a-template.md)
+* [Fees & governance](protocol/fees-and-governance/README.md)
+  * [Fee model](protocol/fees-and-governance/fees.md)
+  * [Governance](protocol/fees-and-governance/governance.md)
+* [Security](protocol/security/README.md)
+  * [Guarantees](protocol/security/guarantees.md)
+  * [Limitations](protocol/security/limitations.md)
+  * [Audits](protocol/security/audits.md)
+* [Reference](protocol/reference/README.md)
+  * [Deployment addresses](protocol/reference/addresses.md)
+  * [Deterministic addresses](protocol/reference/deterministic-addresses.md)
+  * [EIP-712 typed data](protocol/reference/eip712.md)
+  * [Contract reference](protocol/reference/contracts.md)
+
+## Sailor
+
+* [Overview](sailor/README.md)

@@ -1,11 +1,8 @@
 ---
 description: Onchain separately managed accounts, run by agents.
-cover: .gitbook/assets/sail-logo.png
-coverY: 0
 layout:
   cover:
-    visible: true
-    size: hero
+    visible: false
   title:
     visible: true
   description:
@@ -20,27 +17,9 @@ layout:
 
 # Sail Documentation
 
-Sail is a protocol for **onchain separately managed accounts (SMAs)**. Capital stays in a self-custodial [Safe](https://safe.global) owned by the LP. A designated manager — typically an autonomous agent — executes transactions within a **mandate** enforced by smart contracts on every dispatch. The manager never takes custody; it holds a cryptographic authorization that the kernel checks against the account's registered permissions at execution time.
+Sail is a protocol for onchain separately managed accounts — capital stays in a self-custodial [Safe](https://safe.global), and a manager (typically an autonomous agent) executes only what on-chain permission contracts allow. Pick the section that matches what you're building:
 
-{% hint style="info" %}
-**Are you an LLM or coding agent?** Read [llms.txt](https://docs.sail.money/llms.txt) for a structured summary of these docs, or [llms-full.txt](https://docs.sail.money/llms-full.txt) for the full context.
-{% endhint %}
-
-## Choose your path
-
-These docs split into two sections. Pick the one that matches what you're building.
-
-{% content-ref url="protocol/" %}
-[protocol](protocol/)
-{% endcontent-ref %}
-
-**Protocol** — Build directly on the smart contracts. Write permission contracts, deploy SMAs, appoint managers, and integrate the kernel. For developers working in Solidity and against the on-chain ABIs.
-
-{% content-ref url="sailor/" %}
-[sailor](sailor/)
-{% endcontent-ref %}
-
-**Sailor** — Operate mandated agents with the toolkit. A TypeScript SDK and CLI that wrap SMA creation, mandate signing, and dispatch — driven by your coding agent. For developers shipping a strategy agent without touching the kernel directly.
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>Build directly on the smart contracts. For developers writing permission contracts, deploying SMAs, appointing managers, and integrating the kernel in Solidity.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td>Operate mandated agents with the toolkit. For developers (and their coding agents) using the TypeScript SDK and CLI — SMA setup, mandate signing, and dispatch.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
 
 ## Which one do I need?
 
@@ -49,6 +28,12 @@ These docs split into two sections. Pick the one that matches what you're buildi
 | Write Solidity permission contracts, or integrate `SailKernel` / `MandateFactory` from your own code | **Protocol** |
 | Ship an agent that runs a strategy on an SMA, using a ready-made SDK + CLI | **Sailor** |
 | Understand the security model, fees, or governance before building | **Protocol → Concepts / Security** |
+
+## For AI agents
+
+{% hint style="info" %}
+**Are you an LLM or coding agent?** Read [llms.txt](https://docs.sail.money/llms.txt) for a structured summary of these docs, or [llms-full.txt](https://docs.sail.money/llms-full.txt) for the full context.
+{% endhint %}
 
 ## Resources
 

@@ -1,6 +1,6 @@
 # Use a shared template
 
-Shared templates let one deployed contract serve many accounts, each with its own configuration. This guide configures `SharedBoundedSwapPermission` for an account end to end. The pattern generalizes to every shared template — only the `params` layout changes.
+`SharedBoundedSwapPermission` is an **example** template that demonstrates the shared multi-tenant pattern — one deployed contract serving many accounts, each with its own configuration. This guide configures it for an account end to end; the pattern generalizes to every shared template, with only the `params` layout changing. As with all shipped templates, treat it as a reference to read, adapt, and verify rather than an audited, drop-in contract — see the framing on [Shared multi-tenant templates](../permissions/shared-templates.md).
 
 ## 1. Encode the config params
 
@@ -58,6 +58,6 @@ For each, it verifies the **router** is allowlisted (`ctx.target`), the **input 
 * To change the bounds, the Permission Signer signs a fresh `Configure` (new nonce) — it clears the old config and applies the new one atomically. Submit via `factory.reconfigure(...)`.
 * To **tighten** safely without a front-run window, deploy/configure a new permission and `factory.replace(...)` (atomic kernel swap). See [the lifecycle](../permissions/lifecycle.md).
 
-{% hint style="warning" %}
-The shipped shared templates are **unaudited references** and are **not yet deployed against the current kernel**. To use this flow today, deploy the template yourself (or use one once it's published in the deployment manifests). Always verify a template's `evaluate` logic before registering it.
+{% hint style="info" %}
+The shipped templates are reference examples, not a fixed part of the protocol (see [Shared multi-tenant templates](../permissions/shared-templates.md)). To use this flow today, deploy the template yourself, or use one once it is published in the deployment manifests. You are responsible for the correctness of any permission you register — read and test a template's `evaluate` logic before registering it in production.
 {% endhint %}

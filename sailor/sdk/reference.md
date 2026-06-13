@@ -1,6 +1,6 @@
 # Exports & helpers
 
-The lower-level public surface of `@sail.money/sailor/sdk`, grouped by purpose. (The Intelligence client is intentionally out of scope for these docs.) Types are mirrored from source.
+The lower-level public surface of `@sail.money/sailor/sdk`, grouped by purpose. Internal and experimental exports are omitted. Types are mirrored from source.
 
 ## EIP-712 signing
 

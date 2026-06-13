@@ -4,7 +4,7 @@
 
 ## Protocol
 
-- [Overview](https://docs.sail.money/protocol): What an onchain SMA is, the dispatch model, and the trusted-core components.
+- [Overview](https://docs.sail.money/protocol/protocol): What an onchain SMA is, the dispatch model, and the trusted-core components.
 - [Concepts: SMAs](https://docs.sail.money/protocol/concepts/smas): What a separately managed account is and why it exists.
 - [Concepts: The three roles](https://docs.sail.money/protocol/concepts/roles): Owner, Permission Signer, Manager — who holds what authority.
 - [Concepts: The mandate & selective dispatch](https://docs.sail.money/protocol/concepts/mandate): The mandate is a set of permission contracts; each dispatch names one.
@@ -38,7 +38,7 @@
 
 ## Sailor
 
-- [Overview](https://docs.sail.money/sailor): The off-chain operator toolkit; relation to the Protocol.
+- [Overview](https://docs.sail.money/sailor/sailor): The off-chain operator toolkit; relation to the Protocol.
 - [Getting started: Quickstart](https://docs.sail.money/sailor/getting-started/quickstart): Install, then zero to a dispatched transaction.
 - [Getting started: Operate Sailor with a coding agent](https://docs.sail.money/sailor/getting-started/coding-agent): The flagship workflow — scaffold, open in your assistant, say "start".
 - [Concepts: Sailor & the Protocol](https://docs.sail.money/sailor/concepts/protocol-mapping): Shared vocabulary; which side of the line Sailor is on.

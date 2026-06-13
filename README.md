@@ -15,7 +15,7 @@ layout:
     visible: false
 ---
 
-# Sail Documentation
+# Sail.Money
 
 Sail is a protocol for onchain separately managed accounts — capital stays in a self-custodial [Safe](https://safe.global), and a manager (typically an autonomous agent) executes only what on-chain permission contracts allow. Pick the section that matches what you're building:
 

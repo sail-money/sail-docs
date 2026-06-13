@@ -1,6 +1,12 @@
 # Shared multi-tenant templates
 
-The naive pattern — one permission contract per account, parameters in the constructor — gives a clean per-instance audit surface but is expensive in gas and bytecode. Sail's **recommended** pattern is the **shared multi-tenant template**: one contract deployed once per chain, serving every account that registers it, with per-account configuration stored in mappings keyed by `account`.
+The naive pattern — one permission contract per account, parameters in the constructor — gives a clean per-instance audit surface but is expensive in gas and bytecode. The **shared multi-tenant template** pattern shown here serves every account that registers it from one contract deployed once per chain, with per-account configuration stored in mappings keyed by `account`.
+
+{% hint style="info" %}
+**These templates are examples, not the protocol.** The `Shared*` templates and `BaseSharedPermission` are reference implementations that demonstrate how to implement the [`IPermission`](ipermission.md) pattern across common DeFi primitives. They are illustrative, not a fixed part of the trusted core — anyone can deploy their own permission contracts, and the kernel registers and dispatches any contract implementing `IPermission`.
+
+You are responsible for the correctness of any permission you register (see [permission correctness is the author's responsibility](../security/limitations.md)). Treat these templates as starting points to read, learn from, and adapt — not audited, drop-in production contracts. They are unaudited and not yet deployed against the current kernel; verify and test before any production use.
+{% endhint %}
 
 ## BaseSharedPermission
 
@@ -59,9 +65,7 @@ A set of shared templates ships with the protocol as demonstrations of the patte
 | `SharedAMMLiquidityPermission` | Concentrated-liquidity ops on Uniswap V3 / Aerodrome. | `amm-liquidity.v1` |
 | `SharedApproveAndCallBatchPermission` | Batch-only: the `approve → call → reset` pattern. | `batch-dispatch.v1` |
 
-{% hint style="warning" %}
-Templates are demonstrations of the pattern, not the protocol. They are **unaudited** and, as of this writing, **not yet deployed against the current kernel** on any chain. Treat them as reference implementations to read, adapt, and deploy yourself. Anyone may deploy additional templates for any venue.
-{% endhint %}
+Anyone may deploy additional templates for any venue — the catalog above is a starting set, not a closed list.
 
 ## Standalone (clone) templates
 

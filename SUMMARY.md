@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Sail Documentation](README.md)
+* [Sail.Money](README.md)
 
 ## Protocol
 
@@ -46,3 +46,28 @@
 ## Sailor
 
 * [Overview](sailor/README.md)
+* [Getting started](sailor/getting-started/README.md)
+  * [Quickstart](sailor/getting-started/quickstart.md)
+  * [Operate Sailor with a coding agent](sailor/getting-started/coding-agent.md)
+* [Concepts](sailor/concepts/README.md)
+  * [Sailor & the Protocol](sailor/concepts/protocol-mapping.md)
+  * [On-chain vs off-chain](sailor/concepts/on-chain-off-chain.md)
+  * [Keys & custody](sailor/concepts/keys-and-custody.md)
+* [Guides](sailor/guides/README.md)
+  * [Deploy & predict an SMA](sailor/guides/deploy-sma.md)
+  * [Build & register a mandate](sailor/guides/build-a-mandate.md)
+  * [Configure a shared template](sailor/guides/configure-a-template.md)
+  * [Run a strategy & dispatch](sailor/guides/run-a-strategy.md)
+  * [Simulate before going live](sailor/guides/simulate.md)
+  * [Multi-chain operation](sailor/guides/multi-chain.md)
+  * [Automate with GitHub Actions](sailor/guides/ci.md)
+* [CLI reference](sailor/cli/README.md)
+  * [Setup & onboarding](sailor/cli/setup.md)
+  * [Accounts & keys](sailor/cli/accounts.md)
+  * [Mandates](sailor/cli/mandate.md)
+  * [Run & operate](sailor/cli/operate.md)
+* [SDK reference](sailor/sdk/README.md)
+  * [SailorClient](sailor/sdk/client.md)
+  * [The Agent interface](sailor/sdk/agent.md)
+  * [Exports & helpers](sailor/sdk/reference.md)
+* [Troubleshooting & FAQ](sailor/troubleshooting.md)

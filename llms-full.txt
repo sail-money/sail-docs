@@ -1,0 +1,106 @@
+# Sail.Money — full context for agents
+
+Sail is a protocol for onchain Separately Managed Accounts (SMAs) on the EVM. Capital is held in a self-custodial Safe owned by the LP. A designated manager — typically an autonomous agent — executes transactions within a mandate enforced by smart contracts on every dispatch. The manager never takes custody; it holds a cryptographic authorization the kernel checks against the account's registered permissions at execution time. Two layers: the **Protocol** (on-chain trusted core) and **Sailor** (off-chain TypeScript operator toolkit + CLI). The trusted core is under an ongoing external audit by Octane Security and is not final.
+
+For the link index see https://docs.sail.money/llms.txt. Source repos: github.com/sail-money/Protocol and github.com/sail-money/Sailor.
+
+==================================================================
+PROTOCOL
+==================================================================
+
+THE MODEL
+- Owner deploys & owns the SMA (a Safe). Owner signs the mandate. Owner appoints the Manager (instant revocation).
+- Manager signs each dispatch (EIP-712). The kernel evaluates the named permission via staticcall and executes the call on the Safe only if it returns true; otherwise the dispatch reverts. The kernel never holds assets.
+
+THREE ROLES (stored per account in SailKernel AccountConfig: permissionSigner, manager, feePolicy, feeAsset, sessionActive)
+- Owner: holds the Safe; custody anchor; can always revoke the manager.
+- Permission Signer: authorizes the mandate (register/configure/replace/revoke) via EIP-712. Cannot move assets.
+- Manager: signs dispatches; cannot change the mandate; cannot exceed registered permissions. May be an EOA, multisig, MPC wallet, or autonomous agent.
+- The submitter (msg.sender / gas payer) is NOT an authority; any address may submit (relayer/paymaster/4337-compatible).
+
+THE MANDATE & SELECTIVE DISPATCH
+- The mandate is the set of IPermission contracts registered for an SMA — not a document.
+- Each dispatch NAMES ONE registered permission as its authorizer; the kernel evaluates only that one (selective authorization, not conjunctive). Unrelated permissions coexist without falsely denying each other.
+- dispatch(account, permission, target, value, data, managerSig, deadline).
+
+FOUR EVALUATION GUARANTEES (protect the kernel from arbitrary permission code)
+1. Static evaluation: permissions called via staticcall — no state mutation; reentrancy structurally impossible.
+2. Gas isolation: PERMISSION_GAS_CAP = 150,000 per evaluate (BATCH_EVAL_GAS_CAP = 1,000,000 for batches).
+3. Selective authorization: one named permission evaluated per dispatch.
+4. Fail-closed: false / revert / OOG / malformed return → whole dispatch reverts. Deny-by-default; no registered permissions → cannot dispatch.
+
+IPERMISSION (the build surface)
+  function evaluate(bytes calldata txData, Context calldata ctx) external view returns (bool);
+  function discriminator() external view returns (bytes32);
+  struct Context { address account; address manager; address submitter; address target; bytes4 selector; uint256 value; uint256 blockTimestamp; uint256 blockNumber; }
+- Permissions are arbitrary Solidity (full expressiveness): adding a DeFi venue is a contract deployment, not a protocol upgrade. The kernel binds authorization to a permission ADDRESS — register only non-upgradeable/audited permissions.
+
+BATCH DISPATCH
+- dispatchBatch(account, permission, Call[] calls, managerSig, deadline); gated by ONE IBatchPermission (isBatchPermission()==true, evaluateBatch()).
+- MAX_BATCH_LENGTH = 16; atomic; operation=0 (CALL) only. Canonical use: approve→consuming-call→reset-to-zero, validated as a unit (e.g. SharedApproveAndCallBatchPermission). previewBatch(...) for off-chain pre-flight.
+
+PERMISSION LIFECYCLE (all permission-signer EIP-712, carry a deadline; consume signerNonces)
+- registerPermission / registerPermissions (charge a flat fee), revokePermission(s), replacePermission(s) (atomic), revokeSession/activateSession, setFeePolicy.
+- Manager rotation: the Safe calls setManager(newManager) — clears the entire mandate atomically and invalidates the old manager's pre-signed dispatches (nonce epoch bump 1<<128). Three nonce namespaces: managerNonces, batchNonces, signerNonces.
+
+SHARED TEMPLATES (EXAMPLES, NOT THE PROTOCOL)
+- The Shared* templates and BaseSharedPermission are reference implementations demonstrating the IPermission pattern; illustrative, not a fixed part of the trusted core. Anyone can deploy their own. You are responsible for the correctness of any permission you register. Unaudited and not yet deployed against the current kernel — verify and test before production.
+- Shared multi-tenant pattern: one deployment serves many accounts; per-account config via configure() (EIP-712 Configure(account, keccak256(params), nonce, deadline)) on BaseSharedPermission. Catalog: SharedBoundedSwapPermission, SharedBoundedBorrowPermission, SharedTransferTargetPermission, SharedDeFiBundlePermission, SharedPendlePermission, SharedAMMLiquidityPermission, SharedApproveAndCallBatchPermission.
+
+FEES (two mechanisms; both zero at launch; immutable caps)
+1. Registration fee: flat ETH per permission registration; cap MAX_PERMISSION_FEE_WEI ≤ 0.001 ETH; excess refunded.
+2. Protocol cut on manager-collected fees: cap MAX_PROTOCOL_CUT_BPS = 2500 (25%). collectFees(account, grossFee, currentNav, feeToken); recipient pulled from IFeePolicy.feeRecipient(); callable by manager, the Safe, or the permission signer.
+- StandardFeePolicy: 2-and-20 (management fee on AUM + performance fee above per-account high-water mark); NAV is manager-attested (not verified on-chain); 1-day min collection interval; HWM must be seeded first.
+
+GOVERNANCE
+- 48-hour TimelockController (injected, validated at construction) gates all parameter changes. Tunables: protocol cut (0), registration fee (0), maxPermissionsPerAccount (default 20, cap 100). Two-step governance transfer + rotateTimelockRoles. Emergency pause: emergencyAdmin, 72h auto-expiry, 72h cooldown; revoke/rotate stay available while paused. Trusted allowlists (Safe factory/singleton/module-setup/proxy-codehash/fee-policy) seeded once at genesis via bootstrapAllowlists.
+
+SECURITY — SIX GUARANTEES: custody isolation; selective authorization; reentrancy safety; gas isolation; constitutional fee caps; signer separation. LIMITATIONS (honest): (1) permission correctness is the author's responsibility — upgradeable permissions are a trust escalation; (2) manager-attested NAV — use an oracle-backed fee policy if the manager isn't trusted; (3) off-chain venue components are outside the kernel's view. Report: security@sail.money.
+
+DEPLOYMENTS (deterministic CREATE2, identical address on every supported chain)
+- SailKernel        0x02ABC18B65A328de2e749F56ba79ACF2718a6659
+- SailGovernance    0x7A478118715791728BDE3bc7A4D7ECfdEB89C6EC
+- TimelockController 0xE48Ba8DB6d748adafD13155c3590f62e58a77f56
+- MandateFactory    0x14EDd6c2a56EfC0d71E215ab13094B9AF90543d2
+- StandardFeePolicy 0xe7B5901b839cFFDEd9D4108A22712C8BfdA1D80D
+- SafeModuleEnabler 0x7897Cb53a4be4a2eaAf46D60573C4Fd83b33fE1F
+- Treasury          0xB01dCE443d052e44b7D13726c0EC9fFB7f5815B6
+- Chains: Ethereum (1), Base (8453), Arbitrum (42161), Unichain (130), Base Sepolia (84532), Eth Sepolia (11155111).
+- SMA address binding: boundSalt = keccak256(saltNonce, caller, permissionSigner, manager, feePolicy) → same SMA address on every chain; a different manager/signer lands at a different address (front-run resistant).
+
+EIP-712 TYPE STRINGS (domain: name "SailKernel", version "1", verifyingContract = kernel)
+- Dispatch(address account,address permission,address target,uint256 value,bytes32 dataHash,uint256 nonce,uint256 deadline)
+- DispatchBatch(address account,address permission,bytes32 callsHash,uint256 nonce,uint256 deadline)
+- RegisterPermission / RevokePermission(address account,address permission,uint256 nonce,uint256 deadline)
+- ReplacePermission(address account,address oldPermission,address newPermission,uint256 nonce,uint256 deadline)
+- RegisterPermissions / RevokePermissions(address account,address[] permissions,uint256 nonce,uint256 deadline)
+- ReplacePermissions(address account,address[] oldPermissions,address[] newPermissions,uint256 nonce,uint256 deadline)
+- RevokeSession / ActivateSession(address account,uint256 nonce,uint256 deadline)
+- SetFeePolicy(address account,address newFeePolicy,address feeAsset,uint256 nonce,uint256 deadline)
+- Configure(address account,bytes32 paramsHash,uint256 nonce,uint256 deadline)  [BaseSharedPermission domain]
+
+==================================================================
+SAILOR (off-chain operator toolkit; NOT part of the trusted core)
+==================================================================
+
+WHAT IT IS: a TypeScript SDK + CLI + local dashboard for creating an SMA, authoring/registering a mandate, and running a strategy agent against an already-deployed kernel. Distinguishing model: operated THROUGH coding agents (Claude Code, Cursor, Codex) — the `sailor init` scaffold ships an AGENTS.md + skills that drive the whole flow. npm: @sail.money/sailor (SDK via subpath @sail.money/sailor/sdk; standalone @sail.money/sdk also published). Node 18+, viem ^2.
+
+ON-CHAIN VS OFF-CHAIN (key rule): all financial bounds are enforced on-chain by the permission; cadence, selection, data, and submission are operator-side. Put every capital-protecting rule into a permission; leave only timing/selection to the agent.
+
+CLI (program "sailor"; most commands take --json):
+- init [dir] (--template, --chain, --rpc-url) — scaffold a project.
+- keys: generate | show | export-ci (encrypted geth keystore v3; SAIL_PASSPHRASE unlocks).
+- account: predict (--owner --manager --salt --chain --json) | deploy-chain (--chain required, --salt, --json) | rotate-signer (--sma --to --generate --skip-reattach --reattach-only --list --json).
+- mandate: prepare | sign (--yes) | deploy (--artifact --contract --out --name --args --args-file --build --attach --sma --json) | attach (--address* --sma* --label --json) | deploy-clone (--template* --sma* --tokens --spenders --max --label --json) | revoke (--address --sma* --all --json) | templates (--json) | simulate (--address* --sma --target --calldata --value --expect pass|fail --label --calls --json) | update (--address* --name --source-path --artifact-path --json) | list.
+- onboard (--sma --new-sma --salt --template --skip-mandate --json).
+- station: start | status | stop (--json). owner: connect (--timeout 300 --json) | show (--json). scan (--owner --json). status. run (--once --chain). session: pause | resume. doctor (--account --json). capabilities (--json). chains (--verify --json). ui: start | stop | status.
+- --args format: JSON array of constructor args (numbers/addresses as strings, address arrays as nested arrays, order = constructor order). bash: single-quote the array. PowerShell: use --args-file (path to a JSON file) to avoid quoting.
+- Owner signatures go through the browser signing station; the agent never holds the owner key. Setup asks before gas; a running agent transacts autonomously within the signed mandate. Never attach a permission before `forge test` AND `sailor mandate simulate` pass. ERC-20 approve() needs explicit coverage (separate per-call IPermission, or an atomic IBatchPermission) — a swap/supply/deposit permission does not cover approve.
+
+SDK (@sail.money/sailor/sdk):
+- SailorClient({ rpcUrl, chainId, kernel?, mandateFactory? }) with namespaces: account (create/registerExisting/get), mandate (attach/attachBatch/reconfigure/replace/detach/deployAndAttachClone/list/isRegistered/draft), dispatch (single/batch/preview), strategy (swap — LiFi-integrated), session (revoke/activate/status), fees (setPolicy/collect), principal (recordDeposit/recordWithdrawal), capabilities().
+- Agent interface: { name, description, tick(ctx): Promise<Dispatch[]> }. AgentContext: { safe, account, chainId, blockNumber, timestamp, now, client, publicClient (viem), manager (keyring), log(), data (your own inputs — seed via SAILOR_DATA env or in-agent; no third-party data baked in), read.{balance, allowance, decimals} }.
+- Signing/capabilities: buildDispatchSignature (self-detecting EIP-712 dispatch signer — never hand-roll), detectKernelCapabilities (reads on-chain dispatch model — never hardcode), sailKernelDomain, buildRegisterPermissionTypedData, signRegisterPermission.
+- Errors: decodeKernelError, explainKernelRevert, KERNEL_ERROR_SIGNATURES. Deployments/chains: getSailDeployment, sailDeployments, chains, getChain. Safe math: computeSailSmaAddress, computeKernelBoundSalt, computeSafeProxyAddress, buildSafeSetupInitializer, SAFE_V141. Keyring: LocalKeyring (load/sign). ABIs: SailKernelAbi, MandateFactoryAbi, SailGovernanceAbi. Fees: estimatePermissionFee. Swap primitives (LiFi): fetchLifiQuote, minTokenOut, encodeApprove.
+
+COMMON REVERTS (Sailor decodes them): PermissionDenied (out of bounds — fail-closed), PermissionNotRegistered (not on the mandate / wrong chain), SessionInactive (paused — session resume), InvalidManagerSignature (often a lagging RPC node — set gas/awaitNonce/nonce), AccountSelfTarget. A denied dispatch means your bounds held.

@@ -1,6 +1,11 @@
 # Fee model
 
-The protocol has exactly two fee mechanisms. Each is bounded by an **immutable constitutional cap** and is **zero at launch**. Strategy-level fees (management/performance) are a separate, optional layer that lives in the fee policy.
+The protocol has exactly two fee mechanisms. Each is bounded by an **immutable constitutional cap** and is **zero at launch**. They differ in scope:
+
+* **Fee 1** is **universal** — a flat charge on every permission registration, so it touches every SMA.
+* **Fee 2** is **conditional** — a protocol cut taken only when a manager actually collects a management/performance fee from the SMAs it runs. An SMA that never has a fee charged against it never incurs Fee 2.
+
+Strategy-level fees (the management/performance schedule the manager charges) are a separate, optional layer that lives in the fee policy; Fee 2 is the protocol's slice of those.
 
 ## Fee 1 — Permission registration fee
 
@@ -17,7 +22,34 @@ total fee = permissionRegistrationFee × n_permissions
 
 ## Fee 2 — Protocol cut on manager-collected fees
 
-When the manager collects its fee via `collectFees`, the kernel splits the gross amount:
+Unlike Fee 1, **Fee 2 is not universal.** It is a cut the protocol takes _off the top_ of a fee that a **manager** is already charging an SMA — so it only exists where a manager actually crystallises a strategy fee. The protocol earns nothing here unless a manager earns first.
+
+### When Fee 2 applies — and when it doesn't
+
+Fee 2 is reached **only** through `collectFees`, and `collectFees` only succeeds for an account that has a fee policy set (`setFeePolicy` → `IFeePolicy`). The intended shape is a **yield or portfolio-management strategy**: a single manager wallet is the delegated signer across **one or more SMAs**, runs the strategy on each, and periodically collects a management and/or performance fee from each account it manages. Fee 2 is the protocol's slice of each of those collections.
+
+Concretely, Fee 2 **does** apply when:
+
+* A manager (EOA, multisig, bot, or AI agent) is delegated over a set of SMAs whose owners have agreed to pay it a management/performance fee, and
+* the SMAs have a `trustedFeePolicy` set that names that manager as `feeRecipient`, and
+* the manager calls `collectFees` to crystallise its fee on a given account.
+
+Fee 2 **does not** apply to:
+
+* An SMA with **no fee policy** set (`collectFees` reverts with `FeePolicyNotSet`) — e.g. a retail owner self-managing, or any account whose manager simply isn't charging a fee. Such an account can register permissions, dispatch, and operate forever and **never** touch Fee 2.
+* Mere registration, dispatch, or any activity other than a manager fee collection. Fee 1 covers registration; Fee 2 is strictly about manager fee crystallisation.
+
+So the two fees scale on different axes: **Fee 1 scales with how many permissions get registered (every SMA), Fee 2 scales with how much fee revenue a manager generates across the SMAs it manages.**
+
+### The shared-policy, multi-SMA case
+
+A fee policy is a standalone contract on governance's `trustedFeePolicy` allowlist, and **one policy instance can be the registered policy for many SMAs at once**. In the typical strategy setup, the manager deploys (or reuses) a single `StandardFeePolicy` whose `feeManager`/`feeRecipient` is the manager wallet, and every SMA that opts into that strategy points its `feePolicy` at that one contract. State that must be per-account — high-water mark, last-collection timestamp, applied rates — is keyed by `account` inside the policy, so each SMA accrues independently even though they share the schedule.
+
+When the manager later collects from each of those SMAs, the kernel takes the same `currentProtocolCutBps` slice from each collection. The protocol cut is computed **per collection, per account** — there is no aggregation across the manager's book.
+
+### The split
+
+When `collectFees` runs, the kernel splits the gross amount the manager requested:
 
 ```
 protocolCut    = grossFee × currentProtocolCutBps / 10_000
@@ -26,9 +58,10 @@ distributorCut = remainder × distributorBps / 10_000   (0 if distributor == add
 managerTake    = remainder − distributorCut
 ```
 
-* `currentProtocolCutBps` is bounded by the immutable cap `MAX_PROTOCOL_CUT_BPS = 2500` (**25%**) and is **zero at launch**.
-* The fee **recipient is pulled from the policy** (`IFeePolicy.feeRecipient()`), not from the caller — a compromised manager cannot redirect fees.
-* `distributorBps` is validated `<= 10_000` (`DistributorBpsTooLarge` otherwise).
+* `currentProtocolCutBps` is bounded by the immutable cap `MAX_PROTOCOL_CUT_BPS = 2500` (**25%**) and is **zero at launch** — at launch the manager (and its distributor) keep 100% of the fee they charge.
+* `grossFee` is capped by the policy: the kernel enforces `grossFee <= computeFee(...).grossFee`, so the manager can never collect more than its own schedule allows.
+* The fee **recipient is pulled from the policy** (`IFeePolicy.feeRecipient()`), not from the caller — a compromised manager cannot redirect fees to itself.
+* `distributorBps` is validated `<= 10_000` (`DistributorBpsTooLarge` otherwise). The distributor share is carved out of the manager's _remainder_, not the protocol's cut.
 * `collectFees(account, grossFee, currentNav, feeToken)` may be called by the manager, the Safe itself, or the permission signer (a backstop against fee-starvation). `feeToken` must equal the account's configured `feeAsset`. State is recorded **before** transfers (CEI); transfers go out of the Safe via the module path, atomically.
 
 ## IFeePolicy

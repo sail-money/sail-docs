@@ -26,9 +26,7 @@ To add it to another project:
 npm install @sail.money/sailor viem
 ```
 
-{% hint style="info" %}
-**On the standalone SDK package.** The SDK is also published separately as `@sail.money/sdk` for consumers who want it independent of the CLI (`npm install @sail.money/sdk viem`). The **supported, verified-from-source** import path is the subpath export `@sail.money/sailor/sdk` shown above; if you depend on the standalone `@sail.money/sdk`, confirm the current published version on npm — see the [flag list](../../#) note in the Sailor build report. Either way, `@sail.money/sailor/sdk` imports work unchanged.
-{% endhint %}
+The SDK is **only** distributed inside `@sail.money/sailor` — always import it from the `@sail.money/sailor/sdk` subpath. There is no separate `@sail.money/sdk` package; `@sail.money/sailor` is the one package you install.
 
 ## How to use it
 

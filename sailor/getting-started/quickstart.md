@@ -11,11 +11,21 @@ From nothing to a bounded agent dispatching its first transaction. The fastest p
 
 ## 1. Scaffold a project
 
+Install the package and scaffold — Sailor works with any agent, via **npm** or **Docker**.
+
+**npm**
+
 ```bash
-mkdir my-agent && cd my-agent && npm i @sail.money/sailor && npx sailor init
+npm i @sail.money/sailor ; npx sailor init
 ```
 
-`sailor init` scaffolds into the current directory (pass a name to create a subdirectory). It writes a `.sail/` workspace, a Foundry workspace for permission contracts, a GitHub Actions cron job, and the operator guide (`AGENTS.md`). Then `npm install`.
+**Docker** (no local Node needed)
+
+```bash
+docker run -d --name agent -P -v "${PWD}:/workspace" sailmoney/sailor ; docker exec agent sailor init
+```
+
+`sailor init` scaffolds into the current directory (pass a name to create a subdirectory). It writes a `.sail/` workspace, a Foundry workspace for permission contracts, a GitHub Actions cron job, and the operator guide (`AGENTS.md`).
 
 {% hint style="info" %}
 **Recommended:** open the folder in Claude Code, Cursor, or Codex and say **"start"** — the scaffolded `AGENTS.md` and its skills drive the entire flow below for you. See [Operate Sailor with a coding agent](coding-agent.md).

@@ -44,7 +44,7 @@ Each project gets a deterministic port in 3333–3999 derived from its path. Use
 ## SDK
 
 **How do I import the SDK?**
-From the subpath export: `import { SailorClient } from "@sail.money/sailor/sdk"`. It's bundled in `@sail.money/sailor` (peer-depends on `viem ^2`). A standalone `@sail.money/sdk` is also published; confirm its current version on npm if you depend on it directly. See [SDK reference](sdk/).
+From the subpath export: `import { SailorClient } from "@sail.money/sailor/sdk"`. It ships inside `@sail.money/sailor` (peer-depends on `viem ^2`) — there is no separate `@sail.money/sdk` package, so install `@sail.money/sailor` and import from `/sdk`. See [SDK reference](sdk/).
 
 **How do I know if the kernel is selective or conjunctive?**
 Call `detectKernelCapabilities` (or `client.capabilities()`) — it reads the on-chain typehash. Never hardcode the model; sign dispatches with `buildDispatchSignature`, which picks the right struct for you.

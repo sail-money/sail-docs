@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Sail.Money](README.md)
+* [For AI agents](for-ai-agents.md)
 
 ## Protocol
 

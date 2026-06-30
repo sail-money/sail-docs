@@ -12,7 +12,7 @@ Sailor is **not** part of the trusted core. It wraps `SailKernel` dispatch, `Man
 
 Sailor is for developers building and operating an autonomous strategy on an SMA. Its distinguishing model: **you operate Sailor through your coding agent.** You scaffold a project, open it in Claude Code, Cursor, or any AI coding assistant, and the assistant drives the whole flow — SMA deployment, strategy definition, mandate authoring, testing, running — guided by an `AGENTS.md` and a set of skills that ship in the scaffold.
 
-That means these docs serve two readers at once: **you**, and **the coding agent reading them on your behalf**. Both are first-class. If you're an agent, start with [llms.txt](/llms.txt).
+That means these docs serve two readers at once: **you**, and **the coding agent reading them on your behalf**. Both are first-class — these docs are a live MCP server your agent can query directly. See [For AI agents](../for-ai-agents.md).
 
 ## What's inside
 

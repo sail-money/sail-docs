@@ -84,3 +84,5 @@ MIT. Stateless. `enable(address module)` — must be invoked via `Safe.setup`'s 
 ## Interfaces
 
 `IPermission`, `IBatchPermission`, `IConfigurablePermission`, `IFeePolicy`, `IOracle`, `IPermissionIntrospection`, `IAgentIdentityResolver` / `IAccountAgentIdentityResolver`, and the `SailCapabilities` library. See [IPermission & Context](../permissions/ipermission.md) and [extension interfaces](../permissions/extensions.md).
+
+<!-- sync-probe SYNCPROBE_1782831613 -->

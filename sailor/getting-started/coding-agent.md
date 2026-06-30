@@ -47,9 +47,9 @@ The scaffold's `AGENTS.md` encodes hard invariants the assistant follows. The on
 
 Coding agents read these docs on your behalf. Point yours at the machine-readable index:
 
-* **[llms.txt](https://docs.sail.money/llms.txt)** — a structured summary of the entire Protocol + Sailor tree with links.
-* **[llms-full.txt](https://docs.sail.money/llms-full.txt)** — the expanded context.
+* **[llms.txt](/llms.txt)** — a structured summary of the entire Protocol + Sailor tree with links.
+* **[llms-full.txt](/llms-full.txt)** — the expanded context.
 
-A typical instruction: *"Read docs.sail.money/llms.txt, then set up a Sail SMA on Base that lets the agent only swap USDC↔WETH on Uniswap V3 up to 500 USDC per trade."* The agent pulls the relevant pages, scaffolds, authors a bounded permission, simulates it, and runs.
+A typical instruction: *"Read the Sail docs' llms.txt, then set up a Sail SMA on Base that lets the agent only swap USDC↔WETH on Uniswap V3 up to 500 USDC per trade."* The agent pulls the relevant pages, scaffolds, authors a bounded permission, simulates it, and runs.
 
 The custody guarantee holds regardless of which assistant you use: capital stays in your Safe, the mandate is enforced on-chain on every dispatch, and you can [pause](../cli/operate.md) or revoke at any time.

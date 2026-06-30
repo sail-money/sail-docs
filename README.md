@@ -32,7 +32,7 @@ Sail is a protocol for onchain separately managed accounts — capital stays in 
 ## For AI agents
 
 {% hint style="info" %}
-**Are you an LLM or coding agent?** Read [llms.txt](https://docs.sail.money/llms.txt) for a structured summary of these docs, or [llms-full.txt](https://docs.sail.money/llms-full.txt) for the full context.
+**Are you an LLM or coding agent?** Read [llms.txt](/llms.txt) for a structured summary of these docs, or [llms-full.txt](/llms-full.txt) for the full context.
 {% endhint %}
 
 ## Resources

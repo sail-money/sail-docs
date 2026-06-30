@@ -4,61 +4,61 @@
 
 ## Protocol
 
-- [Overview](https://docs.sail.money/protocol/protocol): What an onchain SMA is, the dispatch model, and the trusted-core components.
-- [Concepts: SMAs](https://docs.sail.money/protocol/concepts/smas): What a separately managed account is and why it exists.
-- [Concepts: The three roles](https://docs.sail.money/protocol/concepts/roles): Owner, Permission Signer, Manager — who holds what authority.
-- [Concepts: The mandate & selective dispatch](https://docs.sail.money/protocol/concepts/mandate): The mandate is a set of permission contracts; each dispatch names one.
-- [Concepts: The four evaluation guarantees](https://docs.sail.money/protocol/concepts/evaluation-guarantees): staticcall, gas cap (150k), selective authorization, fail-closed.
-- [Concepts: Deterministic deployment](https://docs.sail.money/protocol/concepts/deterministic-deployment): Same core + SMA address on every chain (CREATE2, boundSalt).
-- [Concepts: Glossary](https://docs.sail.money/protocol/concepts/glossary): Precise definitions of every term.
-- [Architecture](https://docs.sail.money/protocol/architecture): Trusted core vs periphery; component map.
-- [Architecture: SailKernel](https://docs.sail.money/protocol/architecture/kernel): Registry, dispatch, fees, nonces, constants.
-- [Architecture: SailGovernance & Timelock](https://docs.sail.money/protocol/architecture/governance): Caps, 48h timelock, pause, allowlists.
-- [Architecture: MandateFactory](https://docs.sail.money/protocol/architecture/mandate-factory): Bundles configure→register; holds no privilege.
-- [Architecture: SafeModuleEnabler](https://docs.sail.money/protocol/architecture/safe-module-enabler): Enables the kernel as a Safe module at setup.
-- [Architecture: Single & batch dispatch](https://docs.sail.money/protocol/architecture/dispatch): dispatch / dispatchBatch; approve→call→reset.
-- [Permission system](https://docs.sail.money/protocol/permissions): How to build on top — the heart of the protocol.
-- [Permissions: IPermission & Context](https://docs.sail.money/protocol/permissions/ipermission): The interface every permission implements.
-- [Permissions: Full expressiveness](https://docs.sail.money/protocol/permissions/expressiveness): Arbitrary Solidity, not a constraint grammar.
-- [Permissions: Shared multi-tenant templates](https://docs.sail.money/protocol/permissions/shared-templates): Example implementations of the pattern (verify and test before production).
-- [Permissions: Lifecycle](https://docs.sail.money/protocol/permissions/lifecycle): Register, configure, replace, revoke, rotate.
-- [Permissions: Extension interfaces](https://docs.sail.money/protocol/permissions/extensions): Introspection and agent-identity conventions (tooling-only).
-- [Guides: Write your first permission](https://docs.sail.money/protocol/guides/write-a-permission): A minimal IPermission, line by line.
-- [Guides: Deploy an SMA](https://docs.sail.money/protocol/guides/deploy-an-sma): Safe creation, kernel module, deterministic address.
-- [Guides: Register a mandate](https://docs.sail.money/protocol/guides/register-a-mandate): Sign and submit permission registration.
-- [Guides: Dispatch within bounds](https://docs.sail.money/protocol/guides/dispatch): Execute a call; what a revert looks like.
-- [Guides: Use a shared template](https://docs.sail.money/protocol/guides/use-a-template): Configure SharedBoundedSwapPermission end to end.
-- [Fees & governance](https://docs.sail.money/protocol/fees-and-governance): Two fee mechanisms, immutable caps, governance.
-- [Security: Guarantees](https://docs.sail.money/protocol/security/guarantees): The six bytecode-level guarantees.
-- [Security: Limitations](https://docs.sail.money/protocol/security/limitations): Permission correctness, manager-attested NAV, off-chain components.
-- [Security: Audits](https://docs.sail.money/protocol/security/audits): Octane Security audit status; security@sail.money.
-- [Reference: Deployment addresses](https://docs.sail.money/protocol/reference/addresses): Trusted core, identical on six chains.
-- [Reference: EIP-712 typed data](https://docs.sail.money/protocol/reference/eip712): Every type string the kernel verifies.
-- [Reference: Contract reference](https://docs.sail.money/protocol/reference/contracts): Per-contract function surface.
+- [Overview](/protocol/protocol): What an onchain SMA is, the dispatch model, and the trusted-core components.
+- [Concepts: SMAs](/protocol/concepts/smas): What a separately managed account is and why it exists.
+- [Concepts: The three roles](/protocol/concepts/roles): Owner, Permission Signer, Manager — who holds what authority.
+- [Concepts: The mandate & selective dispatch](/protocol/concepts/mandate): The mandate is a set of permission contracts; each dispatch names one.
+- [Concepts: The four evaluation guarantees](/protocol/concepts/evaluation-guarantees): staticcall, gas cap (150k), selective authorization, fail-closed.
+- [Concepts: Deterministic deployment](/protocol/concepts/deterministic-deployment): Same core + SMA address on every chain (CREATE2, boundSalt).
+- [Concepts: Glossary](/protocol/concepts/glossary): Precise definitions of every term.
+- [Architecture](/protocol/architecture): Trusted core vs periphery; component map.
+- [Architecture: SailKernel](/protocol/architecture/kernel): Registry, dispatch, fees, nonces, constants.
+- [Architecture: SailGovernance & Timelock](/protocol/architecture/governance): Caps, 48h timelock, pause, allowlists.
+- [Architecture: MandateFactory](/protocol/architecture/mandate-factory): Bundles configure→register; holds no privilege.
+- [Architecture: SafeModuleEnabler](/protocol/architecture/safe-module-enabler): Enables the kernel as a Safe module at setup.
+- [Architecture: Single & batch dispatch](/protocol/architecture/dispatch): dispatch / dispatchBatch; approve→call→reset.
+- [Permission system](/protocol/permissions): How to build on top — the heart of the protocol.
+- [Permissions: IPermission & Context](/protocol/permissions/ipermission): The interface every permission implements.
+- [Permissions: Full expressiveness](/protocol/permissions/expressiveness): Arbitrary Solidity, not a constraint grammar.
+- [Permissions: Shared multi-tenant templates](/protocol/permissions/shared-templates): Example implementations of the pattern (verify and test before production).
+- [Permissions: Lifecycle](/protocol/permissions/lifecycle): Register, configure, replace, revoke, rotate.
+- [Permissions: Extension interfaces](/protocol/permissions/extensions): Introspection and agent-identity conventions (tooling-only).
+- [Guides: Write your first permission](/protocol/guides/write-a-permission): A minimal IPermission, line by line.
+- [Guides: Deploy an SMA](/protocol/guides/deploy-an-sma): Safe creation, kernel module, deterministic address.
+- [Guides: Register a mandate](/protocol/guides/register-a-mandate): Sign and submit permission registration.
+- [Guides: Dispatch within bounds](/protocol/guides/dispatch): Execute a call; what a revert looks like.
+- [Guides: Use a shared template](/protocol/guides/use-a-template): Configure SharedBoundedSwapPermission end to end.
+- [Fees & governance](/protocol/fees-and-governance): Two fee mechanisms, immutable caps, governance.
+- [Security: Guarantees](/protocol/security/guarantees): The six bytecode-level guarantees.
+- [Security: Limitations](/protocol/security/limitations): Permission correctness, manager-attested NAV, off-chain components.
+- [Security: Audits](/protocol/security/audits): Octane Security audit status; security@sail.money.
+- [Reference: Deployment addresses](/protocol/reference/addresses): Trusted core, identical on six chains.
+- [Reference: EIP-712 typed data](/protocol/reference/eip712): Every type string the kernel verifies.
+- [Reference: Contract reference](/protocol/reference/contracts): Per-contract function surface.
 
 ## Sailor
 
-- [Overview](https://docs.sail.money/sailor/sailor): The off-chain operator toolkit; relation to the Protocol.
-- [Getting started: Quickstart](https://docs.sail.money/sailor/getting-started/quickstart): Install, then zero to a dispatched transaction.
-- [Getting started: Operate Sailor with a coding agent](https://docs.sail.money/sailor/getting-started/coding-agent): The flagship workflow — scaffold, open in your assistant, say "start".
-- [Concepts: Sailor & the Protocol](https://docs.sail.money/sailor/concepts/protocol-mapping): Shared vocabulary; which side of the line Sailor is on.
-- [Concepts: On-chain vs off-chain](https://docs.sail.money/sailor/concepts/on-chain-off-chain): Financial bounds on-chain; cadence off-chain.
-- [Concepts: Keys & custody](https://docs.sail.money/sailor/concepts/keys-and-custody): Owner browser-only; manager key encrypted.
-- [Guides: Deploy & predict an SMA](https://docs.sail.money/sailor/guides/deploy-sma)
-- [Guides: Build & register a mandate](https://docs.sail.money/sailor/guides/build-a-mandate)
-- [Guides: Configure a shared template](https://docs.sail.money/sailor/guides/configure-a-template)
-- [Guides: Run a strategy & dispatch](https://docs.sail.money/sailor/guides/run-a-strategy)
-- [Guides: Simulate before going live](https://docs.sail.money/sailor/guides/simulate)
-- [Guides: Multi-chain operation](https://docs.sail.money/sailor/guides/multi-chain)
-- [Guides: Automate with GitHub Actions](https://docs.sail.money/sailor/guides/ci)
-- [CLI reference](https://docs.sail.money/sailor/cli): Every command, flag, and default; the --args format.
-- [SDK reference](https://docs.sail.money/sailor/sdk): SailorClient, the Agent interface, signing helpers, exports.
-- [Troubleshooting & FAQ](https://docs.sail.money/sailor/troubleshooting): Common errors and what they mean.
+- [Overview](/sailor/sailor): The off-chain operator toolkit; relation to the Protocol.
+- [Getting started: Quickstart](/sailor/getting-started/quickstart): Install, then zero to a dispatched transaction.
+- [Getting started: Operate Sailor with a coding agent](/sailor/getting-started/coding-agent): The flagship workflow — scaffold, open in your assistant, say "start".
+- [Concepts: Sailor & the Protocol](/sailor/concepts/protocol-mapping): Shared vocabulary; which side of the line Sailor is on.
+- [Concepts: On-chain vs off-chain](/sailor/concepts/on-chain-off-chain): Financial bounds on-chain; cadence off-chain.
+- [Concepts: Keys & custody](/sailor/concepts/keys-and-custody): Owner browser-only; manager key encrypted.
+- [Guides: Deploy & predict an SMA](/sailor/guides/deploy-sma)
+- [Guides: Build & register a mandate](/sailor/guides/build-a-mandate)
+- [Guides: Configure a shared template](/sailor/guides/configure-a-template)
+- [Guides: Run a strategy & dispatch](/sailor/guides/run-a-strategy)
+- [Guides: Simulate before going live](/sailor/guides/simulate)
+- [Guides: Multi-chain operation](/sailor/guides/multi-chain)
+- [Guides: Automate with GitHub Actions](/sailor/guides/ci)
+- [CLI reference](/sailor/cli): Every command, flag, and default; the --args format.
+- [SDK reference](/sailor/sdk): SailorClient, the Agent interface, signing helpers, exports.
+- [Troubleshooting & FAQ](/sailor/troubleshooting): Common errors and what they mean.
 
 ## Resources
 
-- [Deployment addresses](https://docs.sail.money/protocol/reference/addresses): SailKernel 0x02ABC18B65A328de2e749F56ba79ACF2718a6659 (same on all six chains).
+- [Deployment addresses](/protocol/reference/addresses): SailKernel 0x02ABC18B65A328de2e749F56ba79ACF2718a6659 (same on all six chains).
 - [Protocol repository](https://github.com/sail-money/Protocol)
 - [Sailor repository](https://github.com/sail-money/Sailor)
 - [Whitepaper](https://github.com/sail-money/Protocol/blob/main/docs/whitepaper/Sail_Protocol_Whitepaper.pdf)
-- [llms-full.txt](https://docs.sail.money/llms-full.txt): Expanded context for agents.
+- [llms-full.txt](/llms-full.txt): Expanded context for agents.

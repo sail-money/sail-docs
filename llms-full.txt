@@ -2,7 +2,7 @@
 
 Sail is a protocol for onchain Separately Managed Accounts (SMAs) on the EVM. Capital is held in a self-custodial Safe owned by the LP. A designated manager — typically an autonomous agent — executes transactions within a mandate enforced by smart contracts on every dispatch. The manager never takes custody; it holds a cryptographic authorization the kernel checks against the account's registered permissions at execution time. Two layers: the **Protocol** (on-chain trusted core) and **Sailor** (off-chain TypeScript operator toolkit + CLI). The trusted core is under an ongoing external audit by Octane Security and is not final.
 
-For the link index see https://docs.sail.money/llms.txt. Source repos: github.com/sail-money/Protocol and github.com/sail-money/Sailor.
+For the link index see /llms.txt. Source repos: github.com/sail-money/Protocol and github.com/sail-money/Sailor.
 
 ==================================================================
 PROTOCOL

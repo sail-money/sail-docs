@@ -29,7 +29,7 @@ Sail is a protocol for onchain separately managed accounts — capital stays in 
 | Ship an agent that runs a strategy on an SMA, using a ready-made SDK + CLI | **Sailor** |
 | Understand the security model, fees, or governance before building | **Protocol → Concepts / Security** |
 
-## For AI agents
+## For coding agents
 
 {% hint style="info" %}
 **Are you an LLM or coding agent?** These docs are a live MCP server you can query while you code, plus static `llms.txt` context. See [For AI agents](for-ai-agents.md).

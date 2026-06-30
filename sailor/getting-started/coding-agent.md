@@ -45,10 +45,7 @@ The scaffold's `AGENTS.md` encodes hard invariants the assistant follows. The on
 
 ## Pointing your agent at these docs
 
-Coding agents read these docs on your behalf. Point yours at the machine-readable index:
-
-* **[llms.txt](/llms.txt)** — a structured summary of the entire Protocol + Sailor tree with links.
-* **[llms-full.txt](/llms-full.txt)** — the expanded context.
+Coding agents read these docs on your behalf. The strongest path is the live **MCP server** — your agent queries the docs on demand while it works — with `llms.txt` / `llms-full.txt` as a static fallback. Full setup (MCP endpoint, `claude mcp add`, connectors) is on [For AI agents](../../for-ai-agents.md).
 
 A typical instruction: *"Read the Sail docs' llms.txt, then set up a Sail SMA on Base that lets the agent only swap USDC↔WETH on Uniswap V3 up to 500 USDC per trade."* The agent pulls the relevant pages, scaffolds, authors a bounded permission, simulates it, and runs.
 

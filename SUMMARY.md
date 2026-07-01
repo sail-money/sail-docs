@@ -72,3 +72,11 @@
   * [The Agent interface](sailor/sdk/agent.md)
   * [Exports & helpers](sailor/sdk/reference.md)
 * [Troubleshooting & FAQ](sailor/troubleshooting.md)
+
+## Legal
+
+* [Overview](legal/README.md)
+* [Terms of Use](legal/terms-of-use.md)
+* [Privacy Policy](legal/privacy-policy.md)
+* [Disclaimer & Risks](legal/disclaimer.md)
+* [Open-Source Licenses](legal/open-source-licenses.md)

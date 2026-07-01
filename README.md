@@ -41,7 +41,8 @@ Sail is a protocol for onchain separately managed accounts — capital stays in 
 * [Protocol repository](https://github.com/sail-money/Protocol) · [Sailor repository](https://github.com/sail-money/Sailor)
 * [Whitepaper](https://github.com/sail-money/Protocol/blob/main/docs/whitepaper/Sail_Protocol_Whitepaper.pdf)
 * `llms.txt` — a machine-readable index of these docs for AI agents
+* [Legal](legal/README.md) — terms, privacy, disclaimer & risks, and open-source licenses
 
 ***
 
-The Sail Protocol trusted core is under an ongoing external audit by [Octane Security](https://octane.security) and is not final. Do not use it with funds you are not prepared to lose.
+The Sail Protocol trusted core is under an ongoing external audit by [Octane Security](https://octane.security) and is not final. Do not use it with funds you are not prepared to lose. See the [Disclaimer & Risks](legal/disclaimer.md).

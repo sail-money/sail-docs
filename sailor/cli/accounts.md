@@ -1,4 +1,4 @@
-# CLI — Accounts & keys
+# Accounts & keys
 
 Managing the SMA and the local signing keys.
 

@@ -30,4 +30,4 @@ The trusted core is the primary review surface. The shared permission templates 
 
 ## Reporting a vulnerability
 
-Email **security@sail.money**. Please include enough detail to reproduce, and allow time for a fix before public disclosure. The contracts carry a `@custom:security-contact security@sail.money` tag in their source, and the canonical [Security Policy](https://github.com/sail-money/Protocol/blob/main/SECURITY.md) lives at the repository root.
+Email **hello@sail.money**. Please include enough detail to reproduce, and allow time for a fix before public disclosure. The contracts carry a `@custom:security-contact security@sail.money` tag in their source, and the canonical [Security Policy](https://github.com/sail-money/Protocol/blob/main/SECURITY.md) lives at the repository root.

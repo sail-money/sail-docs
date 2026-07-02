@@ -44,19 +44,19 @@ The shared templates are **reviewed reference implementations** (see [Security](
 
 All chains run the selective-dispatch kernel via CREATE2 and have had their onboarding allowlists bootstrapped (`allowlistBootstrapped() == true`).
 
-| Chain | Chain ID | Native | Type | Explorer-verified |
-| --- | --- | --- | --- | :---: |
-| Ethereum | 1 | ETH | mainnet | ✅ |
-| Base | 8453 | ETH | mainnet | ✅ |
-| Arbitrum | 42161 | ETH | mainnet | ✅ |
-| Optimism | 10 | ETH | mainnet | ✅ |
-| Unichain | 130 | ETH | mainnet | ✅ |
-| World | 480 | ETH | mainnet | ✅ |
-| MegaETH | 4326 | ETH | mainnet | ✅ |
-| BSC | 56 | BNB | mainnet | ✅ |
-| HyperEVM | 999 | HYPE | mainnet | ⬜ (source not yet published on explorer) |
-| Base Sepolia | 84532 | ETH | **testnet** | ✅ |
-| Eth Sepolia | 11155111 | ETH | **testnet** | ✅ |
+| Chain | Chain ID | Native | Type |
+| --- | --- | --- | --- |
+| Ethereum | 1 | ETH | mainnet |
+| Base | 8453 | ETH | mainnet |
+| Arbitrum | 42161 | ETH | mainnet |
+| Optimism | 10 | ETH | mainnet |
+| Unichain | 130 | ETH | mainnet |
+| World | 480 | ETH | mainnet |
+| MegaETH | 4326 | ETH | mainnet |
+| BSC | 56 | BNB | mainnet |
+| HyperEVM | 999 | HYPE | mainnet |
+| Base Sepolia | 84532 | ETH | **testnet** |
+| Eth Sepolia | 11155111 | ETH | **testnet** |
 
 That's **11 chains — 9 mainnets and 2 testnets.** The CREATE2 factory (`0x4e59b44847b379578588920cA78FbF26c0B4956C`) and the Safe v1.4.1 proxy factory (`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67`) are present at their canonical addresses on all eleven, so the same-address property holds on each.
 

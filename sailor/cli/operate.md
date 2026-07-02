@@ -1,4 +1,4 @@
-# CLI — Run & operate
+# Run & operate
 
 Running the agent and operating a live SMA.
 

@@ -1,4 +1,4 @@
-# CLI — Mandates
+# Mandates
 
 `sailor mandate` manages the permission contracts registered on an SMA. Authoring → simulating → deploying → registering → confirming. See [Build & register a mandate](../guides/build-a-mandate.md) for the narrative flow.
 

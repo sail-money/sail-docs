@@ -1,4 +1,4 @@
-# CLI — Setup & onboarding
+# Setup & onboarding
 
 Commands for scaffolding a project, connecting your wallet, and creating an SMA.
 

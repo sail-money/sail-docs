@@ -12,15 +12,9 @@ A separately managed account is the structure professional asset management is b
 
 Sail fills the gap between them: a self-custodial account whose manager has bounded, code-enforced, revocable authority.
 
-## How it works, in one screen
+## How it works
 
-```
-Owner ── deploys & owns ──▶ SMA (Safe, holds assets)
-Owner ── signs mandate ───▶ Mandate (set of IPermission contracts)
-Owner ── appoints ────────▶ Manager (agent; instant revocation)
-Manager ─ signs dispatch ─▶ SailKernel ─ evaluates named permission (staticcall)
-SailKernel ─ if true ─────▶ Safe executes the call · if false ─▶ revert
-```
+<figure><img src="../.gitbook/assets/how-it-works.png" alt=""><figcaption></figcaption></figure>
 
 * Capital is held in the owner's **Safe**. The kernel never holds assets.
 * The **mandate** is not a document — it is the set of permission contracts registered for the account.

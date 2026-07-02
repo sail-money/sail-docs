@@ -1,4 +1,4 @@
-# Legal
+# Overview
 
 These terms apply to both Sail products — **Sail Protocol** and **Sailor** — and to this website and documentation. They are published by **Agentic Finance Inc.**, a Wyoming corporation.
 

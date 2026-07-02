@@ -30,4 +30,4 @@ A permission can only check what is visible on-chain at dispatch time. It cannot
 * **Force-sent ETH is unrecoverable** in `MandateFactory` (no sweep function); an accepted residual since `receive()` already blocks normal deposits.
 * **Governance is trusted within its caps.** Governance cannot exceed the constitutional caps or move user funds, but it does control tunable parameters and the trusted allowlists, behind the 48-hour timelock.
 
-If you find something here that looks like more than a documented limitation, report it: **security@sail.money**.
+If you find something here that looks like more than a documented limitation, report it: **hello@sail.money**.

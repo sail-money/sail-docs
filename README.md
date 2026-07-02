@@ -21,6 +21,8 @@ Sail is a protocol for onchain separately managed accounts — capital stays in 
 
 <table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>Build directly on the smart contracts. For developers writing permission contracts, deploying SMAs, appointing managers, and integrating the kernel in Solidity.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td>Operate mandated agents with the toolkit. For developers (and their coding agents) using the TypeScript SDK and CLI — SMA setup, mandate signing, and dispatch.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
 
+Both products — the Protocol and Sailor — are **fully open source**, free to read, fork, and build on.
+
 ## Which one do I need?
 
 | You want to… | Go to |

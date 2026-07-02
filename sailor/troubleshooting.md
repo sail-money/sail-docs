@@ -51,4 +51,4 @@ Call `detectKernelCapabilities` (or `client.capabilities()`) — it reads the on
 
 ## Still stuck?
 
-Run `sailor doctor` for a read-only health check (kernel model, permission health, RPC reachability, gas balances). For protocol-level questions — kernel internals, the permission model, fees, governance — see the [Protocol docs](../protocol/). For security disclosure: **security@sail.money**.
+Run `sailor doctor` for a read-only health check (kernel model, permission health, RPC reachability, gas balances). For protocol-level questions — kernel internals, the permission model, fees, governance — see the [Protocol docs](../protocol/). For security disclosure: **hello@sail.money**.

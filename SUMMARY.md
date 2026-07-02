@@ -37,7 +37,7 @@
 * [Security](protocol/security/README.md)
   * [Guarantees](protocol/security/guarantees.md)
   * [Limitations](protocol/security/limitations.md)
-  * [Audits](protocol/security/audits.md)
+  * [Octane security review](protocol/security/audits.md)
 * [Reference](protocol/reference/README.md)
   * [Deployment addresses](protocol/reference/addresses.md)
   * [Deterministic addresses](protocol/reference/deterministic-addresses.md)

@@ -1,24 +1,24 @@
 # Fee model
 
-The protocol has exactly two fee mechanisms. Each is bounded by an **immutable constitutional cap** and is **zero at launch**. They differ in scope:
+The protocol has exactly two fee mechanisms, each bounded by an **immutable constitutional cap**. They differ in scope:
 
-* **Fee 1** is **universal** — a flat charge on every permission registration, so it touches every SMA.
-* **Fee 2** is **conditional** — a protocol cut taken only when a manager actually collects a management/performance fee from the SMAs it runs. An SMA that never has a fee charged against it never incurs Fee 2.
+* **Fee 1** is **universal** — a flat charge on every permission registration, so it touches every SMA. It is **live** at a small non-zero rate (see below).
+* **Fee 2** is **conditional** — a protocol cut taken only when a manager actually collects a management/performance fee from the SMAs it runs, and is **zero at launch**. An SMA that never has a fee charged against it never incurs Fee 2.
 
 Strategy-level fees (the management/performance schedule the manager charges) are a separate, optional layer that lives in the fee policy; Fee 2 is the protocol's slice of those.
 
 ## Fee 1 — Permission registration fee
 
-A flat ETH fee charged each time a permission is registered, paid to the protocol treasury:
+A flat native-token fee charged each time a permission is registered, paid to the protocol treasury:
 
 ```
 total fee = permissionRegistrationFee × n_permissions
 ```
 
-* Bounded by the immutable cap `MAX_PERMISSION_FEE_WEI`, which is itself capped at **0.001 ETH** in the `SailGovernance` constructor.
+* Bounded by the immutable cap `MAX_PERMISSION_FEE_WEI`, an immutable bytecode ceiling of **0.01** in the chain's native unit, fixed in the `SailGovernance` constructor.
 * The active rate (`permissionRegistrationFee`) is governance-tunable within that cap, via the 48-hour timelock.
-* **Zero at launch.** Excess `msg.value` is refunded to the submitter.
-* Denominated in native ETH, no oracle dependency; governance retunes as ETH price moves.
+* **Live at launch.** The current rate is **`0.00015 ETH`** on the 9 ETH-native chains, **`0.00045 BNB`** on BSC, and **`0.005 HYPE`** on HyperEVM. It deployed at `0.00015` native on every chain (CREATE2 requires byte-identical constructor args); governance later raised the live rate on BSC and HyperEVM through the timelock, which does not change the already-locked contract address. Excess `msg.value` is refunded to the submitter.
+* Denominated in each chain's native token, with no oracle dependency; governance retunes per chain as native-token prices move. See [Deployment addresses → Fees](../reference/addresses.md#fees-live) for the current per-chain rates.
 
 ## Fee 2 — Protocol cut on manager-collected fees
 

@@ -7,7 +7,7 @@ Sail governance is deliberately small: a fixed set of tunable parameters within 
 | Parameter | Setter (timelock) | Default | Hard cap (immutable) |
 | --- | --- | --- | --- |
 | Protocol cut | `setProtocolCutBps` | 0 | `MAX_PROTOCOL_CUT_BPS = 2500` (25%) |
-| Registration fee | `setPermissionRegistrationFee` | 0 | `MAX_PERMISSION_FEE_WEI ≤ 0.001 ETH` |
+| Registration fee | `setPermissionRegistrationFee` | live (`0.00015` native; higher on BSC/HyperEVM) | `MAX_PERMISSION_FEE_WEI ≤ 0.01` native |
 | Permissions per account | `setMaxPermissionsPerAccount` | 20 | `MAX_PERMISSIONS_CAP = 100` |
 | Trusted Safe factory / singleton / module-setup / proxy-codehash / fee-policy allowlists | `setTrusted*` | seeded at genesis | — |
 | Treasury (on the kernel) | `setTreasury` | set at deploy | — |

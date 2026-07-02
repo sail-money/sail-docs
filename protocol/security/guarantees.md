@@ -20,7 +20,7 @@ Each permission is called under a fixed gas cap (`PERMISSION_GAS_CAP = 150_000`;
 
 ### 5. Constitutional fee caps
 
-The protocol cut (`MAX_PROTOCOL_CUT_BPS = 2500`) and registration fee (`MAX_PERMISSION_FEE_WEI ≤ 0.001 ETH`) cannot be exceeded under any governance procedure — they are immutable. Both are zero at launch.
+The protocol cut (`MAX_PROTOCOL_CUT_BPS = 2500`) and registration fee (`MAX_PERMISSION_FEE_WEI ≤ 0.01` native) cannot be exceeded under any governance procedure — they are immutable. The protocol cut is zero at launch; the registration fee is live at a small non-zero rate (see [Fees](../fees-and-governance/fees.md)).
 
 ### 6. Signer separation
 
@@ -37,4 +37,4 @@ These reinforce the six guarantees:
 * **Three nonce namespaces** — dispatch, batch, and signer operations cannot replay across each other.
 * **Emergency pause** that still permits de-risking operations (revoke, rotate) while blocking value movement.
 
-Several of these correspond to findings raised in the ongoing audit (e.g. Octane #1, #4/#4a/#4b, #7, #16) and are addressed in the deployed bytecode. See [Audits](audits.md).
+Several of these correspond to findings raised in the Octane security analyses (e.g. Octane #1, #4/#4a/#4b, #7, #16) and are addressed in the deployed bytecode. See [Octane security review](audits.md).

@@ -34,7 +34,7 @@ Precise definitions of the terms used throughout these docs. Where a term maps t
 
 **Protocol cut** — The protocol's share of a manager-collected fee, in basis points, bounded by the immutable cap `MAX_PROTOCOL_CUT_BPS = 2500` (25%). Zero at launch.
 
-**Registration fee** — A flat ETH fee charged per permission registration, bounded by the immutable cap `MAX_PERMISSION_FEE_WEI = 0.001 ETH`. Zero at launch.
+**Registration fee** — A flat native-token fee charged per permission registration, bounded by the immutable cap `MAX_PERMISSION_FEE_WEI` (≤ `0.01` native). Live at launch (`0.00015` native; higher on BSC and HyperEVM).
 
 **High-water mark (HWM)** — The highest NAV seen at collection time for an account; `StandardFeePolicy` charges performance fees only on gains above it.
 

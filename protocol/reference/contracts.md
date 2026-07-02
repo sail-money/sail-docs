@@ -46,7 +46,7 @@ Key public constants: `PERMISSION_GAS_CAP = 150_000`, `BATCH_EVAL_GAS_CAP = 1_00
 
 ## SailGovernance
 
-GPL-2.0-or-later. Immutable caps: `MAX_PROTOCOL_CUT_BPS = 2500`, `MAX_PERMISSIONS_CAP = 100`, `MAX_PERMISSION_FEE_WEI` (≤ 0.001 ETH), `REQUIRED_TIMELOCK_DELAY = 48 hours`, `PAUSE_COOLDOWN = 72 hours`.
+GPL-2.0-or-later. Immutable caps: `MAX_PROTOCOL_CUT_BPS = 2500`, `MAX_PERMISSIONS_CAP = 100`, `MAX_PERMISSION_FEE_WEI` (≤ 0.01 native), `REQUIRED_TIMELOCK_DELAY = 48 hours`, `PAUSE_COOLDOWN = 72 hours`.
 
 | Function | Notes |
 | --- | --- |

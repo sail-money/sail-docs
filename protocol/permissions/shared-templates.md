@@ -5,7 +5,7 @@ The naive pattern — one permission contract per account, parameters in the con
 {% hint style="info" %}
 **These templates are examples, not the protocol.** The `Shared*` templates and `BaseSharedPermission` are reference implementations that demonstrate how to implement the [`IPermission`](ipermission.md) pattern across common DeFi primitives. They are illustrative, not a fixed part of the trusted core — anyone can deploy their own permission contracts, and the kernel registers and dispatches any contract implementing `IPermission`.
 
-You are responsible for the correctness of any permission you register (see [permission correctness is the author's responsibility](../security/limitations.md)). Treat these templates as starting points to read, learn from, and adapt — not audited, drop-in production contracts. They are unaudited and not yet deployed against the current kernel; verify and test before any production use.
+You are responsible for the correctness of any permission you register (see [permission correctness is the author's responsibility](../security/limitations.md)). Treat these templates as starting points to read, learn from, and adapt — not audited, drop-in production contracts. The seven shared templates are deployed against the current kernel (see [addresses](../reference/addresses.md)) and were included in the [Octane security review](../security/audits.md), but they remain reference implementations; verify and test before any production use.
 {% endhint %}
 
 ## BaseSharedPermission

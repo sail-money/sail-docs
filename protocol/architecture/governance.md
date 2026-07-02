@@ -7,10 +7,10 @@
 | Cap | Value | Bounds |
 | --- | --- | --- |
 | `MAX_PROTOCOL_CUT_BPS` | `2500` (25%) | the protocol's share of any fee collection |
-| `MAX_PERMISSION_FEE_WEI` | set at deploy, ≤ `0.001 ether` | the per-permission registration fee |
+| `MAX_PERMISSION_FEE_WEI` | set at deploy, ≤ `0.01 ether` | the per-permission registration fee |
 | `MAX_PERMISSIONS_CAP` | `100` | the per-account permission limit |
 
-`MAX_PERMISSION_FEE_WEI` is `immutable` and the constructor itself reverts if it is set above `0.001 ether`. The other two are `constant`.
+`MAX_PERMISSION_FEE_WEI` is `immutable` and the constructor itself reverts if it is set above the `0.01 ether` bytecode ceiling. The other two are `constant`.
 
 ## Tunable parameters (within the caps, via timelock)
 

@@ -1,5 +1,5 @@
 ---
-description: Onchain separately managed accounts, run by agents.
+description: Onchain Separately Managed Accounts Run By Agents
 layout:
   cover:
     visible: false
@@ -43,6 +43,12 @@ Sail is a protocol for onchain separately managed accounts — capital stays in 
 * `llms.txt` — a machine-readable index of these docs for AI agents
 * [Legal](legal/README.md) — terms, privacy, disclaimer & risks, and open-source licenses
 
+## Open source & reviewed
+
+Both **Sail Protocol** and **Sailor** are fully open source — read, fork, and build on every line. See the [Protocol repository](https://github.com/sail-money/Protocol/) and the [Sailor repository](https://github.com/sail-money/Sailor).
+
+The trusted core and shared permission templates were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses. See [Protocol → Security](protocol/security/README.md).
+
 ***
 
-The Sail Protocol trusted core is under an ongoing external audit by [Octane Security](https://octane.security) and is not final. Do not use it with funds you are not prepared to lose. See the [Disclaimer & Risks](legal/disclaimer.md).
+A security review is not a guarantee of correctness, and the correctness of any permission you deploy remains your responsibility. Do not use Sail with funds you are not prepared to lose. See the [Disclaimer & Risks](legal/disclaimer.md).

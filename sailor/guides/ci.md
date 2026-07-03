@@ -1,8 +1,15 @@
-# Automate with GitHub Actions
+# Automate & run unattended
 
-To run your agent on a schedule without a long-running process, use the GitHub Actions workflow the scaffold provides: `.github/workflows/agent-tick.yml`. It runs `sailor run --once` on a cron, using `npm ci` (no pnpm required).
+Once `sailor run --once` works, you can run the agent on a schedule or as a long-lived loop. The scaffold's `sail-automation` skill offers **four options**, by reliability and infra overhead:
 
-## One-time setup
+1. **GitHub Actions** (cloud runner, zero infra) — the scaffold's `.github/workflows/agent-tick.yml` runs `sailor run --once` on a cron; `sailor trigger github` fires it on demand. Simplest, but cron timing drifts.
+2. **Self-hosted runner** — the same workflow on your own machine for reliable timing.
+3. **Docker** — the `sailmoney/sailor` image on any VM or cloud, via a container registry (see [Docker](../docker.md)).
+4. **Local daemon** — `sailor service install` registers an OS service (launchd / systemd / Task Scheduler) that restarts on crash; `sailor service status`/`stop`/`logs`/`uninstall` manage it. No Docker required.
+
+The rest of this page details option 1 (GitHub Actions), the zero-infra default.
+
+## GitHub Actions — one-time setup
 
 **1. Export the CI keystore.**
 
@@ -38,10 +45,16 @@ On each scheduled tick the workflow copies `ci-keystore.json` to `.sail/keys/man
 #   - npx sailor run --once     # env: SAIL_PASSPHRASE, RPC_URL
 ```
 
+Fire it manually without waiting for the cron:
+
+```bash
+sailor trigger github --reason "manual tick"
+```
+
 ## Safety notes
 
 * The agent in CI is still bounded by the on-chain mandate — CI cannot make it exceed its permissions.
-* You can [pause](../cli/operate.md) the session at any time (`sailor session pause`); a paused session makes every scheduled tick a no-op until you resume.
+* You can [pause](../cli/) the session at any time (`sailor session pause`); a paused session makes every scheduled tick a no-op until you resume.
 * Never commit `SAIL_PASSPHRASE` or any raw private key. Only the **encrypted** `ci-keystore.json` is committed.
 
-The assistant's `sail-ci` skill automates this setup if you're [operating via a coding agent](../getting-started/coding-agent.md).
+The `sail-automation` skill walks through all four options if you're [operating via a coding agent](../getting-started/coding-agent.md).

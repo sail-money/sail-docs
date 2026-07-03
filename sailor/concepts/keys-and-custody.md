@@ -33,7 +33,7 @@ Capital is held in the owner's Safe. Sailor cannot move it except through a mana
 sailor session pause       # revoke dispatch rights; sailor session resume to restore
 ```
 
-Pausing the session blocks every dispatch while leaving the Safe, its balances, and the mandate intact. Rotating the agent key (`sailor account rotate-signer`) clears the mandate and re-approves it for the new key — see [Accounts & keys](../cli/accounts.md).
+Pausing the session blocks every dispatch while leaving the Safe, its balances, and the mandate intact. Rotating the agent key (`sailor account rotate-signer`) clears the mandate and re-approves it for the new key — see [CLI → SMA lifecycle](../cli/#sma-lifecycle).
 
 {% hint style="info" %}
 Custody is protected by construction, but **a mandate is only as correct as its permission contracts**. The key model prevents the agent from exceeding the mandate; it does not make a permissive mandate safe. See [Build & register a mandate](../guides/build-a-mandate.md) and the Protocol's [security limitations](../../protocol/security/limitations.md).

@@ -19,7 +19,7 @@ import { buildDispatchSignature, LocalKeyring } from "@sail.money/sailor/sdk";
 import { createPublicClient, http } from "viem";
 
 const publicClient = createPublicClient({ transport: http(rpcUrl) });
-const manager = await LocalKeyring.load(".sail/keys/manager.json", passphrase);
+const manager = await LocalKeyring.fromKeystoreFile(".sail/keys/manager.json", passphrase);
 
 const { signature, nonce, deadline, dispatchModel } = await buildDispatchSignature({
   publicClient, kernel, chainId: 8453,

@@ -8,8 +8,8 @@ import { SailorClient } from "@sail.money/sailor/sdk";
 const client = new SailorClient({
   rpcUrl: "https://...",
   chainId: 8453,
-  kernel: "0x02ABC18B65A328de2e749F56ba79ACF2718a6659", // required for on-chain ops
-  mandateFactory: "0x14EDd6c2a56EfC0d71E215ab13094B9AF90543d2", // for bundled attach flows
+  kernel: "0x38b508756c976e876EFF05a29E731A4d348BA6ED", // required for on-chain ops
+  mandateFactory: "0x6d2C802ffa0d9A8Ed69A5Bf22c1b63ccB566B8Fc", // for bundled attach flows
 });
 
 const caps = await client.capabilities(); // detect dispatch model + EIP-712 shape
@@ -83,7 +83,7 @@ State-changing methods take an `ILocalKeyring` (`address`, `sign(hash)`, `signTy
 
 ```ts
 import { LocalKeyring } from "@sail.money/sailor/sdk";
-const manager = await LocalKeyring.load(".sail/keys/manager.json", process.env.SAIL_PASSPHRASE!);
+const manager = await LocalKeyring.fromKeystoreFile(".sail/keys/manager.json", process.env.SAIL_PASSPHRASE!);
 ```
 
 See [Exports & helpers](reference.md) for `LocalKeyring`, the EIP-712 builders, and capability detection.

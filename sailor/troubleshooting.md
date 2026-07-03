@@ -25,7 +25,7 @@ The aggregator's default slippage is too tight for a small trade. `client.strate
 An ERC-20 `approve()` is **not** covered by a swap/supply/deposit permission. Authorize it explicitly — either a separate per-call `IPermission` for the approve, or an atomic [`IBatchPermission`](../protocol/architecture/dispatch.md) covering the whole `[approve, action, reset]` sequence. A normal `IPermission` cannot authorize a batch. See [Build & register a mandate](guides/build-a-mandate.md).
 
 **`mandate deploy --args` fails to parse.**
-It's almost always shell quoting. On bash/zsh single-quote the whole JSON array; on **PowerShell use `--args-file`** instead of inline JSON. Numbers and addresses are strings; address arrays are nested arrays; order matches the constructor. See [the `--args` format](cli/mandate.md#the-args-format).
+It's almost always shell quoting. On bash/zsh single-quote the whole JSON array; on **PowerShell use `--args-file`** instead of inline JSON. Numbers and addresses are strings; address arrays are nested arrays; order matches the constructor. See [CLI → Mandate lifecycle](cli/#mandate-lifecycle).
 
 **My permission compiles and tests pass, but should I register it?**
 Only after `forge test` **and** `sailor mandate simulate` both pass against samples derived from your real strategy — include the calls it must allow *and* the calls it must reject. The shipped templates are [examples to verify and adapt](guides/configure-a-template.md), not audited drop-in contracts; **you** own the correctness of any permission you register (Protocol [limitations](../protocol/security/limitations.md)).

@@ -37,7 +37,7 @@ sailor mandate attach --address 0xPermission --sma 0xYourSMA
 `deploy` emits a contract-creation signing request (the owner signs it), reads the deployed address from the receipt, and tracks it in `.sail/state/mandates.json`. `attach` reads the signer nonce, has the owner sign a `RegisterPermission` EIP-712 message, then submits `kernel.registerPermission` with the exact registration fee. Both take `--json` for headless use.
 
 {% hint style="info" %}
-**The `--args` format.** Constructor args are a JSON array passed to `--args`. Quoting differs by shell — on PowerShell, use `--args-file` instead of inline JSON. See [CLI → Mandates](../cli/mandate.md#the-args-format) for the exact rules and examples.
+**The `--args` format.** Constructor args are a JSON array passed to `--args`. Quoting differs by shell — on PowerShell, use `--args-file` instead of inline JSON. See [CLI → Mandate lifecycle](../cli/#mandate-lifecycle) for the exact rules and examples.
 {% endhint %}
 
 ## 4. Confirm and sign the mandate

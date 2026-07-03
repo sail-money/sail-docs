@@ -6,16 +6,18 @@ Sailor is designed to be operated **through a coding agent** — Claude Code, Cu
 
 When you run `sailor init`, the scaffold includes an **`AGENTS.md`** operator guide and a set of on-demand **skills** under `.agents/skills/`, following the open [Agent Skills](https://agentskills.io) standard. Assistants that scan skills load each one only when relevant; assistants that don't follow a routing table in `AGENTS.md` to the same plain-markdown files. It works in Claude Code, Cursor, Copilot, and Codex.
 
-The scaffolded skills:
+A representative slice of the scaffolded skills (the full set of seventeen — including one per shared template — is on the [Skills](../skills.md) page):
 
 | Skill | Loaded when the assistant is… |
 | --- | --- |
 | `sail-onboarding` | setting up a new project, or resuming a partial one |
 | `sail-project-info` | answering anything about project / account / mandate / chain / environment state |
 | `sail-servers` | starting, stopping, or health-checking the dashboard or signing station |
+| `sail-templates` + `sail-template-*` | reusing a shared permission template (one skill per template) |
+| `sail-token-resolve` / `sail-swap-quote` | resolving tokens/liquidity and computing swap slippage floors |
 | `sail-transactions` | building dispatches or any EVM transaction for the agent |
-| `sail-mandates` | designing, authoring, testing, deploying, or authorizing permission contracts |
-| `sail-ci` | automating the agent on a schedule via GitHub Actions |
+| `sail-mandates` | designing, authoring, testing, deploying, or authorizing custom permission contracts |
+| `sail-automation` | running the agent unattended (GitHub Actions, self-hosted, Docker, or local daemon) |
 | `sail-extend` | adding notifications or a custom dashboard once the agent is live |
 
 ## The flow
@@ -45,8 +47,8 @@ The scaffold's `AGENTS.md` encodes hard invariants the assistant follows. The on
 
 ## Pointing your agent at these docs
 
-Coding agents read these docs on your behalf. The strongest path is the live **MCP server** — your agent queries the docs on demand while it works — with `llms.txt` / `llms-full.txt` as a static fallback. Full setup (MCP endpoint, `claude mcp add`, connectors) is on [For AI agents](../../for-ai-agents.md).
+Coding agents read these docs on your behalf. The simplest path: give your agent the ready-made prompt on [For AI agents](../../for-ai-agents.md), which points it at the docs' `llms-full.txt` (the full docs as one machine-readable file) and tells it what to do next.
 
 A typical instruction: *"Read the Sail docs' llms.txt, then set up a Sail SMA on Base that lets the agent only swap USDC↔WETH on Uniswap V3 up to 500 USDC per trade."* The agent pulls the relevant pages, scaffolds, authors a bounded permission, simulates it, and runs.
 
-The custody guarantee holds regardless of which assistant you use: capital stays in your Safe, the mandate is enforced on-chain on every dispatch, and you can [pause](../cli/operate.md) or revoke at any time.
+The custody guarantee holds regardless of which assistant you use: capital stays in your Safe, the mandate is enforced on-chain on every dispatch, and you can [pause](../cli/) or revoke at any time.

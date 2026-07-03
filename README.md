@@ -17,9 +17,9 @@ layout:
 
 # Sail.Money
 
-Sail is a protocol for onchain separately managed accounts — capital stays in a self-custodial [Safe](https://safe.global), and a manager (typically an autonomous agent) executes only what on-chain permission contracts allow. Pick the section that matches what you're building:
+Sail is a protocol for onchain separately managed accounts — capital stays in a self-custodial [Safe](https://safe.global), and a manager (typically an autonomous agent) executes only what on-chain permission contracts allow. Pick the path that matches what you're doing:
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>Build directly on the smart contracts. For developers writing permission contracts, deploying SMAs, appointing managers, and integrating the kernel in Solidity.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td>Build & run mandated agents with the toolkit — TypeScript SDK, CLI, local dashboard, and agent skills. For developers (and their coding agents): SMA setup, mandate authoring, dispatch, and unattended operation. npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>Build directly on the smart contracts. For developers writing permission contracts and asset managers launching agentic strategies — deploy SMAs, appoint managers, integrate the kernel.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td>Build and run your own AI agents. For developers building agents for trading, yield, and more — SMA setup, mandate authoring, and dispatch, via npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
 
 Both products — the Protocol and Sailor — are **fully open source**, free to read, fork, and build on.
 

@@ -1,6 +1,6 @@
 # Dashboard (local UI)
 
-`sailor ui` runs a **local web dashboard** for your project — onboarding, balances, mandate health, activity, and owner signing. It reads from the project's `.sail/` directory and talks to your RPC; there is **no hosted backend** and nothing is sent anywhere.
+`sailor ui` runs a **local web dashboard** for your project — onboarding, wallet gas balances, mandate health, activity, and owner signing. It reads from the project's `.sail/` directory and talks to your RPC; there is **no hosted backend** and nothing is sent anywhere.
 
 ```bash
 sailor ui start     # start the dashboard (prints its URL)
@@ -11,7 +11,7 @@ sailor ui stop      # stop it
 ## What it shows
 
 * **Onboarding** — a guided path for SMA deployment and first mandate, mirroring the CLI/skills flow.
-* **Balances** — the SMA's holdings and the manager/owner signer balances.
+* **Gas balances** — the native-token (gas) balance and top-up status of the **owner wallet** and the **agent wallet**, so you can keep them funded to sign and submit. The dashboard does **not** display the SMA's token holdings; a **View portfolio** link opens your SMA on [DeBank](https://debank.com) to review what it holds, and a **Manage SMA** link opens it in the Safe app.
 * **Mandate health** — the permissions registered on the SMA and their configured bounds.
 * **Activity** — the append-only `.sail/activity.jsonl` feed (dispatches, denials, collections).
 * **Owner signing** — the browser **signing server**, where owner/permission-signer EIP-712 signatures happen in your wallet. Sailor never reads the owner key.

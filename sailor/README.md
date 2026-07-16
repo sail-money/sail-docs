@@ -1,10 +1,10 @@
 # Overview
 
-> **The open-source harness that sets it all up** — deploys your SMA, builds your permissions, and runs your strategy, **entirely on your machine**, for agent-managed accounts on [Sail Protocol](../protocol/).
+> The open-source harness for [Sail Protocol](../protocol/) — it deploys your SMA, builds your permissions, and runs your strategy on your own machine.
 
-Sailor turns any AI coding agent into a builder and operator of DeFi agents. Say **start** in an empty folder and it takes you to a running agent: a DeFi strategy, an on-chain mandate, and local automation.
+Sailor is the operator layer for building and running DeFi agents on Sail Protocol. It works through any AI coding agent (Claude Code, Cursor, Codex, or others): from a scaffolded project, it deploys a separately managed account, authors and registers the mandate, and runs the strategy — all locally.
 
-Funds never leave your own **separately managed account (SMA)**. The agent never holds your private key and acts only through a **mandate** — deterministic on-chain permissions the [protocol](../protocol/) checks on every transaction. That is what makes a Sailor agent safe to run with real capital.
+Funds remain in your own **separately managed account (SMA)**. The agent never holds your owner key and acts only through a **mandate** — deterministic on-chain permissions the [protocol](../protocol/) checks on every transaction. That bound is what makes a Sailor agent safe to run with real capital.
 
 {% hint style="info" %}
 Sailor is the **harness**; [Sail Protocol](../protocol/) is the trusted on-chain core. Sailor guides and operates; the kernel enforces. Sailor targets already-deployed kernels — it never deploys the protocol or holds custody.
@@ -38,7 +38,7 @@ Every step has a direct CLI equivalent, so nothing is hidden behind the agent. T
 | --- | --- |
 | **SDK** (`@sail.money/sailor/sdk`) | `SailorClient`, the `Agent` interface, encrypted keyring, EIP-712 signing, dispatch submission, deployment + chain registries, template encoders. See the [SDK reference](sdk/). |
 | **CLI** (`sailor`) | Everything from `sailor init` to `sailor run`: keys, SMA deployment, the full mandate lifecycle, the agent loop, session control, doctor. See the [CLI reference](cli/). |
-| **Dashboard** (`sailor ui`) | A local web app for onboarding, balances, mandate health, activity, and owner signing — read from the project's `.sail/`, no hosted backend. See the [Dashboard](dashboard.md). |
+| **Dashboard** (`sailor ui`) | A local web app for onboarding, wallet gas balances, mandate health, activity, and owner signing — read from the project's `.sail/`, no hosted backend. See the [Dashboard](dashboard.md). |
 | **Skills** | **22** curated procedures under `.agents/skills/`, organized by the five stations — onboarding and diagnostics, strategy definition, mandate construction (one skill per shared template plus the full custom-permission lifecycle), agent construction with a verified code skeleton, and unattended operation through exit. The skills *are* the harness: any coding agent reads them natively and follows the same verified path in every project. See [Skills](skills.md). |
 
 ## Install

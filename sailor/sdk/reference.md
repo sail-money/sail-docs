@@ -89,7 +89,7 @@ try { /* dispatch */ } catch (e) { console.error(explainKernelRevert(e)); }
 | --- | --- |
 | `LocalKeyring` (+ `EncryptedKeystore`, `LocalKeyringOptions`) | Load/sign with the encrypted manager key (geth keystore v3). |
 | `SailKernelAbi`, `MandateFactoryAbi`, `SailGovernanceAbi` | Trusted-core ABIs. |
-| Signing-station message types | `ClientMessage`, `ServerMessage`, `SigningRequest`, `SigningResponse`, `SigningTxRequest`, `SigningTypedDataRequest`, `SerializedTypedData`, … |
+| Signing-server message types | `ClientMessage`, `ServerMessage`, `SigningRequest`, `SigningResponse`, `SigningTxRequest`, `SigningTypedDataRequest`, `SerializedTypedData`, … |
 
 ## Core domain types
 

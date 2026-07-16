@@ -19,7 +19,7 @@ layout:
 
 Sail is a protocol for onchain separately managed accounts — capital stays in a self-custodial [Safe](https://safe.global), and a manager (typically an autonomous agent) executes only what on-chain permission contracts allow. Pick the path that matches what you're doing:
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td>Build directly on the smart contracts. For developers writing permission contracts and asset managers launching agentic strategies — deploy SMAs, appoint managers, integrate the kernel.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td>Build and run your own AI agents. For developers building agents for trading, yield, and more — SMA setup, mandate authoring, and dispatch, via npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td><strong>For protocol developers &#x26; asset managers.</strong> Build directly on the smart contracts — write permission contracts, deploy SMAs, appoint managers, and integrate the kernel.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td><strong>For AI agent builders.</strong> The open source harness that sets it all up — deploys your SMA, builds your permissions, and runs your strategy, entirely on your machine. Works with npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
 
 Both products — the Protocol and Sailor — are **fully open source**, free to read, fork, and build on.
 
@@ -44,6 +44,7 @@ Both products — the Protocol and Sailor — are **fully open source**, free to
 * [Whitepaper](https://github.com/sail-money/Protocol/blob/main/docs/whitepaper/Sail_Protocol_Whitepaper.pdf)
 * `llms.txt` — a machine-readable index of these docs for AI agents
 * [Legal](legal/README.md) — terms, privacy, disclaimer & risks, and open-source licenses
+* **Community** — [Discord](https://discord.gg/9GsxPsHzRv) · [X](https://x.com/SaildotMoney) · [GitHub](https://github.com/sail-money) · [npm](https://www.npmjs.com/package/@sail.money/sailor)
 
 ## Open source & reviewed
 

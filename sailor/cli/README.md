@@ -13,7 +13,7 @@ Every command supports `--help`; most support `--json` for machine-readable outp
 ## Conventions
 
 * **`--json`** — almost every command accepts `--json` for machine-readable output. Use it in scripts, CI, and when [operating via a coding agent](../getting-started/coding-agent.md).
-* **Read-only vs. gas** — `capabilities`, `chains`, `doctor`, `status`, `scan`, and `mandate simulate` spend no gas. Commands that change on-chain state route owner signatures through the browser [signing station](../concepts/keys-and-custody.md).
+* **Read-only vs. gas** — `capabilities`, `chains`, `doctor`, `status`, `scan`, and `mandate simulate` spend no gas. Commands that change on-chain state route owner signatures through the browser [signing server](../concepts/keys-and-custody.md).
 * **`SAIL_PASSPHRASE`** — unlocks the encrypted manager key non-interactively (CI/headless). Read from `.sail/.env.local` or the environment; never commit it.
 * **RPC resolution** — `.sail/.env.local` chain-specific var → generic `RPC_URL` → shell env. See [Multi-chain operation](../guides/multi-chain.md).
 
@@ -31,7 +31,7 @@ Every command supports `--help`; most support `--json` for machine-readable outp
 | `sailor keys generate` | Generate + encrypt a key (`--type agent-wallet` or `mandate-signer`; `--passphrase`, else `SAIL_PASSPHRASE`, else prompt; `--force`). |
 | `sailor keys show` | Addresses of stored keys. |
 | `sailor keys export-ci` | Export key material for CI use. |
-| `sailor owner connect` | Open the signing station, wait for your wallet, save it as owner (`--timeout <seconds>`). |
+| `sailor owner connect` | Open the signing server, wait for your wallet, save it as owner (`--timeout <seconds>`). |
 | `sailor owner show` | Show the saved project owner. |
 
 ## SMA lifecycle
@@ -51,7 +51,7 @@ Every command supports `--help`; most support `--json` for machine-readable outp
 | --- | --- |
 | `sailor mandate templates` | How to author your own permission + any community-deployed addresses. |
 | `sailor mandate deploy` | Deploy a Foundry-compiled permission via the signing UI (`--contract <Name>` or `--artifact <path>`, `--args`/`--args-file`, `--build`, `--attach --sma <address>`). |
-| `sailor mandate attach` | Register already-deployed permission(s) on an SMA — a comma-separated list is one signature (`--label`). |
+| `sailor mandate register` | Register already-deployed permission(s) on an SMA — a comma-separated list is one signature (`--label`). (`sailor mandate attach` is a deprecated alias.) |
 | `sailor mandate configure` | Configure a shared template's per-account bounds (`--template <name> --args-file <path>` or `--params <hex>`; `--simulate-only` for a gas-free preflight; `--force`). |
 | `sailor mandate simulate` | Probe a permission's `evaluate()` off-chain — no gas, no signing (`--target/--calldata/--value/--expect/--label`, or `--calls <file>` for a batch). |
 | `sailor mandate sign` | Review and confirm the permissions authorized for your SMA (`--yes` for CI). |
@@ -61,12 +61,12 @@ Every command supports `--help`; most support `--json` for machine-readable outp
 | `sailor mandate update` | Update tracked-permission metadata (`--name`, `--source-path`, `--artifact-path`). |
 | `sailor mandate deploy-clone` | Deploy + register a standalone clone permission — currently unavailable (no clone templates deployed); use `mandate deploy`. |
 
-## Signing station
+## Signing server
 
 | Command | What it does |
 | --- | --- |
-| `sailor station start` | Start the persistent browser-signing daemon (blocks — run in the background). |
-| `sailor station status` / `stop` | Inspect / stop it. |
+| `sailor signer start` | Start the persistent browser-signing daemon (blocks — run in the background). |
+| `sailor signer status` / `stop` | Inspect / stop it. (`sailor station …` is a deprecated alias.) |
 
 ## Run and automate
 

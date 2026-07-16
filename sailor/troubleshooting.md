@@ -33,7 +33,7 @@ Only after `forge test` **and** `sailor mandate simulate` both pass against samp
 ## Setup & keys
 
 **Where does the owner sign? I don't want my owner key in the terminal.**
-You don't — and you shouldn't. Owner/permission-signer signatures go through the browser [signing station](concepts/keys-and-custody.md): `sailor station start &`, then `sailor owner connect`. Sailor never reads the owner key.
+You don't — and you shouldn't. Owner/permission-signer signatures go through the browser [signing server](concepts/keys-and-custody.md): `sailor signer start &`, then `sailor owner connect`. Sailor never reads the owner key.
 
 **How do I run headlessly / in CI?**
 Set `SAIL_PASSPHRASE` to unlock the encrypted manager key, commit the **encrypted** `ci-keystore.json` (via `sailor keys export-ci`), and use the scaffold's GitHub Actions workflow. Never commit the passphrase or a raw key. See [Automate with GitHub Actions](guides/ci.md).

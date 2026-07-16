@@ -4,20 +4,20 @@ Sailor operates the Protocol's [three roles](../../protocol/concepts/roles.md). 
 
 | Role | Key | Where it lives | Who signs with it |
 | --- | --- | --- | --- |
-| **Owner** | Your wallet (MetaMask, Rabby, …) | Your browser wallet — **never read by Sailor** | You, in the browser signing station |
+| **Owner** | Your wallet (MetaMask, Rabby, …) | Your browser wallet — **never read by Sailor** | You, in the browser signing server |
 | **Permission Signer** | Same as owner, or a separate signer | Your wallet / signer | You, authorizing mandate operations |
 | **Manager** (agent) | The agent wallet | `.sail/keys/manager.json`, encrypted (geth keystore v3) | Sailor, automatically, per dispatch |
 
 ## The owner key is never in the terminal
 
-Owner and permission-signer signatures (creating the SMA, registering or revoking permissions) are deliberate, custody-affecting actions. Sailor routes them through a local **signing station** — an HTTP + WebSocket daemon that serves a browser UI:
+Owner and permission-signer signatures (creating the SMA, registering or revoking permissions) are deliberate, custody-affecting actions. Sailor routes them through a local **signing server** — an HTTP + WebSocket daemon that serves a browser UI:
 
 ```bash
-sailor station start &     # the signing daemon
+sailor signer start &     # the signing daemon
 sailor owner connect       # connect your wallet in the browser, persist it as owner
 ```
 
-The agent (and any coding assistant operating Sailor) **never holds the owner key**. It pushes signing requests to the station; you approve them in the browser; then the agent submits the transactions it's allowed to. This is why a coding agent can drive setup without ever being trusted with custody.
+The agent (and any coding assistant operating Sailor) **never holds the owner key**. It pushes signing requests to the signing server; you approve them in the browser; then the agent submits the transactions it's allowed to. This is why a coding agent can drive setup without ever being trusted with custody.
 
 ## The manager key is encrypted and scoped
 

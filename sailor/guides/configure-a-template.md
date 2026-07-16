@@ -31,18 +31,18 @@ Their addresses are in the [Protocol → Deployment addresses](../../protocol/re
 
 ## Register, then configure
 
-`sailor mandate attach` only **registers** a template — you must also **configure** the per-account bounds:
+`sailor mandate register` only **registers** a template — you must also **configure** the per-account bounds:
 
 ```bash
 # 1. Register (owner signs an EIP-712 RegisterPermission in the browser):
-sailor mandate attach --address <templateAddress> --sma <yourSMA>
+sailor mandate register --address <templateAddress> --sma <yourSMA>
 
 # 2. Configure your bounds (tokens, caps, venues) for that template:
 sailor mandate configure --address <templateAddress> \
   --template SwapPermission --args-file swap-config.json
 ```
 
-The `sail-template-*` skills drive this conversationally with the correct schema per template. `--simulate-only` on `configure` gives a gas-free preflight.
+The `sailor-template-*` skills drive this conversationally with the correct schema per template. `--simulate-only` on `configure` gives a gas-free preflight.
 
 {% hint style="info" %}
 **`sailor mandate deploy-clone` is currently unavailable** — no clone templates are deployed. For a single-account, bespoke permission, author your own `IPermission` and use `sailor mandate deploy --contract <Name> --attach` (see [Build & register a mandate](build-a-mandate.md)).

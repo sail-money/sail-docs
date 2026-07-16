@@ -69,7 +69,7 @@ This permission does a handful of comparisons and one `abi.decode` — comfortab
 
 ## Test it off-chain first
 
-Before registering, you can confirm the permission would approve a given call without spending gas. With the Sailor toolkit this is `sailor mandate simulate`; at the protocol level you can `eth_call` the permission's `evaluate` directly with a constructed `Context`. Only register a permission once you've verified it accepts the calls you intend and rejects the ones you don't.
+Before registering, you can confirm the permission would approve a given call without spending gas. With the Sailor harness this is `sailor mandate simulate`; at the protocol level you can `eth_call` the permission's `evaluate` directly with a constructed `Context`. Only register a permission once you've verified it accepts the calls you intend and rejects the ones you don't.
 
 ## Next
 

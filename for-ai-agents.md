@@ -1,4 +1,4 @@
-<!-- LAUNCH CHECKLIST: when docs.sail.money is mapped, replace "sail-1.gitbook.io/sailmoney" with "docs.sail.money" in this file — the copy-prompt and both llms.txt URLs (clickable absolute links) are hard-coded here and must be swapped. -->
+<!-- docs.sail.money is live (mapped). The copy-prompt and both llms.txt URLs below use the custom domain. If the domain ever changes, update those absolute URLs here. -->
 
 # For AI agents
 
@@ -9,7 +9,7 @@ Sail's docs are built to be read by machines as much as by people. Sailor is ope
 Paste this into Claude Code, Cursor, Codex, ChatGPT, or any coding agent to get it up to speed and building:
 
 ```
-Read https://sail-1.gitbook.io/sailmoney/llms-full.txt and explore the contents.
+Read https://docs.sail.money/llms-full.txt and explore the contents.
 Then summarize what Sail is, how it works, and how a developer uses Sailor to
 build and run a bounded, agent-managed account (SMA). When I confirm, install
 Sailor (npm i @sail.money/sailor && npx sailor init) and walk me through
@@ -24,8 +24,8 @@ This is a plain code block — use its built-in copy button. If your GitBook rea
 
 The docs publish structured static context at the site root, following the `llms.txt` convention:
 
-* [**llms.txt**](https://sail-1.gitbook.io/sailmoney/llms.txt) — a structured index of every page, with links.
-* [**llms-full.txt**](https://sail-1.gitbook.io/sailmoney/llms-full.txt) — the full expanded context, every page concatenated.
+* [**llms.txt**](https://docs.sail.money/llms.txt) — a structured index of every page, with links.
+* [**llms-full.txt**](https://docs.sail.money/llms-full.txt) — the full expanded context, every page concatenated.
 
 Point your agent at `llms.txt` for a map of the docs, or `llms-full.txt` to load everything at once.
 

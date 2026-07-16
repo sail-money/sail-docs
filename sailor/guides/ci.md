@@ -1,6 +1,6 @@
 # Automate & run unattended
 
-Once `sailor run --once` works, you can run the agent on a schedule or as a long-lived loop. The scaffold's `sail-automation` skill offers **four options**, by reliability and infra overhead:
+Once `sailor run --once` works, you can run the agent on a schedule or as a long-lived loop. The scaffold's `sailor-automation` skill offers **four options**, by reliability and infra overhead:
 
 1. **GitHub Actions** (cloud runner, zero infra) — the scaffold's `.github/workflows/agent-tick.yml` runs `sailor run --once` on a cron; `sailor trigger github` fires it on demand. Simplest, but cron timing drifts.
 2. **Self-hosted runner** — the same workflow on your own machine for reliable timing.
@@ -57,4 +57,4 @@ sailor trigger github --reason "manual tick"
 * You can [pause](../cli/) the session at any time (`sailor session pause`); a paused session makes every scheduled tick a no-op until you resume.
 * Never commit `SAIL_PASSPHRASE` or any raw private key. Only the **encrypted** `ci-keystore.json` is committed.
 
-The `sail-automation` skill walks through all four options if you're [operating via a coding agent](../getting-started/coding-agent.md).
+The `sailor-automation` skill walks through all four options if you're [operating via a coding agent](../getting-started/coding-agent.md).

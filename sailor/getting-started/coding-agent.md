@@ -6,24 +6,21 @@ Sailor is designed to be operated **through a coding agent** — Claude Code, Cu
 
 When you run `sailor init`, the scaffold includes an **`AGENTS.md`** operator guide and a set of on-demand **skills** under `.agents/skills/`, following the open [Agent Skills](https://agentskills.io) standard. Assistants that scan skills load each one only when relevant; assistants that don't follow a routing table in `AGENTS.md` to the same plain-markdown files. It works in Claude Code, Cursor, Copilot, and Codex.
 
-A representative slice of the scaffolded skills (the full set of seventeen — including one per shared template — is on the [Skills](../skills.md) page):
+A representative slice of the scaffolded skills, by station (the full set of **22** — including one per shared template — is on the [Skills](../skills.md) page):
 
-| Skill | Loaded when the assistant is… |
+| Skill | Station / role |
 | --- | --- |
-| `sail-onboarding` | setting up a new project, or resuming a partial one |
-| `sail-project-info` | answering anything about project / account / mandate / chain / environment state |
-| `sail-servers` | starting, stopping, or health-checking the dashboard or signing station |
-| `sail-templates` + `sail-template-*` | reusing a shared permission template (one skill per template) |
-| `sail-token-resolve` / `sail-swap-quote` | resolving tokens/liquidity and computing swap slippage floors |
-| `sail-transactions` | building dispatches or any EVM transaction for the agent |
-| `sail-mandates` | designing, authoring, testing, deploying, or authorizing custom permission contracts |
-| `sail-automation` | running the agent unattended (GitHub Actions, self-hosted, Docker, or local daemon) |
-| `sail-extend` | adding notifications or a custom dashboard once the agent is live |
+| `sailor-onboarding` | **Arrive** — set up a new project, or resume a partial one |
+| `sailor-strategy` | **Strategy** — turn your intent into a concrete spec at `.sail/strategy.md` |
+| `sailor-mandate-planner` + `sailor-templates` + `sailor-template-*` + `sailor-mandates` | **Mandate** — route the spec to shared templates (one skill per template) or author custom permissions |
+| `sailor-agent-build` + `sailor-transactions` + `sailor-memory` | **Agent** — build the tick loop, dispatch mechanics, chain-reconciled memory |
+| `sailor-automation` + `sailor-operate` + `sailor-extend` | **Sail** — run unattended, operate/tune/exit, optional notifications/dashboards |
+| `sailor-project-info` / `sailor-servers` / `sailor-token-resolve` / `sailor-swap-quote` | Anytime utilities — state, local servers, token/liquidity resolution, swap quotes |
 
 ## The flow
 
 ```bash
-mkdir my-agent && cd my-agent && npm i @sail.money/sailor && npx sailor init && npm install
+npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 
 Open the folder in your assistant and say **start**. From there the assistant:
@@ -38,7 +35,7 @@ Open the folder in your assistant and say **start**. From there the assistant:
 
 The scaffold's `AGENTS.md` encodes hard invariants the assistant follows. The ones worth knowing as the operator:
 
-* **Owner signing is browser-only.** The assistant never puts your owner key in the terminal — owner approvals happen in the signing station UI in your browser.
+* **Owner signing is browser-only.** The assistant never puts your owner key in the terminal — owner approvals happen in the signing-server UI in your browser.
 * **Setup asks before spending gas; a running agent does not.** Once the mandate is signed, *the mandate is the authorization* — the agent transacts autonomously within it. You are not asked to confirm each dispatch.
 * **Never authorize a permission before it passes tests.** The assistant must see `forge test` **and** `sailor mandate simulate` pass against samples derived from your strategy before attaching a permission.
 * **Use the SDK's signing helpers.** It signs dispatches with `buildDispatchSignature` and detects the kernel's dispatch model with `detectKernelCapabilities` — never hand-rolled EIP-712, never a hardcoded model.

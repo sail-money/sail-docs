@@ -16,7 +16,7 @@ Install the package and scaffold — Sailor works with any agent, via **npm** or
 **npm**
 
 ```bash
-npm i @sail.money/sailor ; npx sailor init
+npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 
 **Docker** (no local Node needed)
@@ -25,7 +25,7 @@ npm i @sail.money/sailor ; npx sailor init
 docker run -d --name agent -P -v "${PWD}:/workspace" sailmoney/sailor ; docker exec agent sailor init
 ```
 
-`sailor init` scaffolds into the current directory (pass a name to create a subdirectory). It writes a `.sail/` workspace, a Foundry workspace for permission contracts, a GitHub Actions cron job, and the operator guide (`AGENTS.md`).
+`sailor init my-agent` scaffolds into a new `my-agent/` directory (omit the name to scaffold into the current directory). It writes your agent code (`src/`), a Foundry workspace for permission contracts (`contracts/`), a GitHub Actions cron job, and the operator guide (`AGENTS.md`) with its skills. Then open the folder in your coding agent and say **start**.
 
 {% hint style="info" %}
 **Recommended:** open the folder in Claude Code, Cursor, or Codex and say **"start"** — the scaffolded `AGENTS.md` and its skills drive the entire flow below for you. See [Operate Sailor with a coding agent](coding-agent.md).
@@ -46,7 +46,7 @@ Sailor resolves RPCs from `.sail/.env.local` first (a chain-specific var like `B
 
 ```bash
 sailor keys generate          # create + encrypt the manager (agent) wallet
-sailor station start &        # the browser signing daemon (owner signs here)
+sailor signer start &        # the browser signing daemon (owner signs here)
 sailor owner connect          # open the printed URL, connect your wallet, persist it as owner
 ```
 

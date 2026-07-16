@@ -26,7 +26,7 @@ Use `-it` for interactive passphrase entry, or pass `-e SAIL_PASSPHRASE=…` at 
 
 ## Dashboard access
 
-Inside the container the UI binds to **3334** (and the signing station to **3141**). With `-P`, Docker maps them to random host ports — resolve before opening the browser:
+Inside the container the UI binds to **3334** (and the signing server to **3141**). With `-P`, Docker maps them to random host ports — resolve before opening the browser:
 
 ```bash
 docker exec agent sailor ui start

@@ -7,18 +7,18 @@ Sailor ships as a single published package — [`@sail.money/sailor`](https://ww
 {% tabs %}
 {% tab title="bash / zsh (macOS, Linux)" %}
 ```bash
-mkdir my-agent && cd my-agent && npm i @sail.money/sailor && npx sailor init
+npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 {% endtab %}
 
 {% tab title="PowerShell (Windows)" %}
 ```powershell
-mkdir my-agent ; cd my-agent ; npm i @sail.money/sailor ; npx sailor init
+npx @sail.money/sailor init my-agent ; cd my-agent ; npm install
 ```
 {% endtab %}
 {% endtabs %}
 
-Requires **Node.js ≥ 18**. `sailor init` scaffolds the project from the default template (agent code, a Foundry workspace for custom permissions, worked example permissions, `AGENTS.md`, and the [skills](skills.md)).
+Requires **Node.js ≥ 18**. `sailor init` scaffolds the project from `scaffold/` (agent code in `src/`, a Foundry workspace for custom permissions in `contracts/`, `AGENTS.md`, and the [skills](skills.md)). Then open the folder in your coding agent and say **start**.
 
 ## Running the CLI
 

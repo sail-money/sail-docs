@@ -31,7 +31,7 @@ sailor onboard --new-sma
 #   --json                non-interactive JSON output
 ```
 
-`onboard` walks the full setup: it creates the SMA on-chain (owner signs in the [signing station](../concepts/keys-and-custody.md)), optionally attaches a first mandate, and confirms the agent is operational. Owner-signed steps go through the browser; the agent submits what it's allowed to.
+`onboard` walks the full setup: it creates the SMA on-chain (owner signs in the [signing server](../concepts/keys-and-custody.md)), optionally attaches a first mandate, and confirms the agent is operational. Owner-signed steps go through the browser; the agent submits what it's allowed to.
 
 ## Deploy the same address on another chain
 

@@ -31,7 +31,7 @@ sailor mandate deploy --contract MyPermission --attach --sma 0xYourSMA \
   --args '["0xPermissionSigner", ["0xTarget"]]'
 
 # or register an already-deployed permission:
-sailor mandate attach --address 0xPermission --sma 0xYourSMA
+sailor mandate register --address 0xPermission --sma 0xYourSMA
 ```
 
 `deploy` emits a contract-creation signing request (the owner signs it), reads the deployed address from the receipt, and tracks it in `.sail/state/mandates.json`. `attach` reads the signer nonce, has the owner sign a `RegisterPermission` EIP-712 message, then submits `kernel.registerPermission` with the exact registration fee. Both take `--json` for headless use.

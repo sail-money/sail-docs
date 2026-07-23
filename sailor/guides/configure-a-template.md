@@ -8,7 +8,7 @@ Sailor can register a [shared template](../../protocol/permissions/shared-templa
 
 ## The seven shared templates
 
-Sail Protocol's **seven shared permission templates are deployed today** — multi-tenant singletons at the **same CREATE2 address on all 11 supported chains**, registered as `knownTemplates` in the SDK deployment registry. You don't deploy them; you **register** one on your SMA and **configure** your own bounds:
+Sail Protocol's **seven shared permission templates are deployed today** — multi-tenant singletons at the **same CREATE2 address on all 12 supported chains**, registered as `knownTemplates` in the SDK deployment registry. You don't deploy them; you **register** one on your SMA and **configure** your own bounds:
 
 | Template | Bounds |
 | --- | --- |

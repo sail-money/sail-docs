@@ -53,18 +53,19 @@ All chains run the selective-dispatch kernel via CREATE2 and have had their onbo
 | Unichain | 130 | ETH | mainnet |
 | World | 480 | ETH | mainnet |
 | MegaETH | 4326 | ETH | mainnet |
+| Robinhood | 4663 | ETH | mainnet |
 | BSC | 56 | BNB | mainnet |
 | HyperEVM | 999 | HYPE | mainnet |
 | Base Sepolia | 84532 | ETH | **testnet** |
 | Eth Sepolia | 11155111 | ETH | **testnet** |
 
-That's **11 chains — 9 mainnets and 2 testnets.** The CREATE2 factory (`0x4e59b44847b379578588920cA78FbF26c0B4956C`) and the Safe v1.4.1 proxy factory (`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67`) are present at their canonical addresses on all eleven, so the same-address property holds on each.
+That's **12 chains — 10 mainnets and 2 testnets.** The CREATE2 factory (`0x4e59b44847b379578588920cA78FbF26c0B4956C`) and the Safe v1.4.1 proxy factory (`0x4e1DCf7AD4e460CfD30791CCC4F9c8a4f820ec67`) are present at their canonical addresses on all twelve, so the same-address property holds on each. Robinhood (4663) was deployed by replaying the exact CREATE2 salt + init code recovered from the original Base transactions, so its core and template addresses are byte-for-byte identical to every other chain.
 
 ## Fees (live)
 
 | Fee | Value |
 | --- | --- |
-| Permission registration fee (live) | `0.00015 ETH` on the 9 ETH-native chains; `0.00045 BNB` on BSC; `0.005 HYPE` on HyperEVM |
+| Permission registration fee (live) | `0.00015 ETH` on the 10 ETH-native chains (Robinhood included); `0.00045 BNB` on BSC; `0.005 HYPE` on HyperEVM |
 | Registration-fee cap (immutable) | `MAX_PERMISSION_FEE_WEI` = `0.01` native-unit ceiling per chain |
 | Protocol cut on manager fees | `0` at launch (immutable cap `MAX_PROTOCOL_CUT_BPS` = 2500 bps = 25%) |
 | Management / performance / distributor fees | `0` at launch |

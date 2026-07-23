@@ -6,7 +6,7 @@ From nothing to a bounded agent dispatching its first transaction. The fastest p
 
 * Node.js 18+
 * A wallet (MetaMask, Rabby, and others) for the **owner** signing
-* An RPC URL for a [supported chain](../guides/multi-chain.md) — Ethereum, Base, Arbitrum, Unichain, Base Sepolia, or Eth Sepolia
+* An RPC URL for a [supported chain](../guides/multi-chain.md) — e.g. Ethereum, Base, Arbitrum, Robinhood, or a testnet (12 chains in all; see the full list)
 * For authoring permissions: [Foundry](https://book.getfoundry.sh) (`forge`)
 
 ## 1. Scaffold a project

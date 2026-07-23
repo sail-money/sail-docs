@@ -4,16 +4,22 @@ Sailor targets the chains where the Sail trusted core is deployed. Because the c
 
 ## Supported chains
 
-| Chain | Chain ID |
-| --- | --- |
-| Ethereum | 1 |
-| Base | 8453 |
-| Arbitrum | 42161 |
-| Unichain | 130 |
-| Base Sepolia | 84532 |
-| Eth Sepolia | 11155111 |
+| Chain | Chain ID | Native | Type |
+| --- | --- | --- | --- |
+| Ethereum | 1 | ETH | mainnet |
+| Base | 8453 | ETH | mainnet |
+| Arbitrum | 42161 | ETH | mainnet |
+| Optimism | 10 | ETH | mainnet |
+| Unichain | 130 | ETH | mainnet |
+| World Chain | 480 | ETH | mainnet |
+| MegaETH | 4326 | ETH | mainnet |
+| Robinhood | 4663 | ETH | mainnet |
+| BSC | 56 | BNB | mainnet |
+| HyperEVM | 999 | HYPE | mainnet |
+| Base Sepolia | 84532 | ETH | testnet |
+| Eth Sepolia | 11155111 | ETH | testnet |
 
-The verified deployment addresses are bundled in the package and exposed via `getSailDeployment(chainId)` in the SDK. The canonical address list is the Protocol's [Deployment addresses](../../protocol/reference/addresses.md). Inspect them from the CLI:
+That's **12 chains** (10 mainnets + 2 testnets). The verified deployment addresses are bundled in the package and exposed via `getSailDeployment(chainId)` in the SDK. The canonical address list is the Protocol's [Deployment addresses](../../protocol/reference/addresses.md). Inspect them from the CLI:
 
 ```bash
 sailor chains            # list supported chains and their SailKernel addresses
@@ -38,11 +44,16 @@ BASE_RPC_URL=https://your-base-endpoint
 ARBITRUM_RPC_URL=https://your-arbitrum-endpoint
 UNICHAIN_RPC_URL=https://your-unichain-endpoint
 ETH_MAINNET_RPC_URL=https://your-mainnet-endpoint
+ROBINHOOD_RPC_URL=https://your-robinhood-endpoint
 BASE_SEPOLIA_RPC_URL=https://your-base-sepolia-endpoint
 SEPOLIA_RPC_URL=https://your-sepolia-endpoint
 ```
 
-Per-chain vars take precedence for their chain, so a multi-chain project resolves each endpoint correctly. `sailor chains --verify` checks every chain that has a configured RPC.
+Per-chain vars take precedence for their chain, so a multi-chain project resolves each endpoint correctly. `sailor chains --verify` checks every chain that has a configured RPC. Each supported chain has a per-chain env var of the form `<CHAIN>_RPC_URL` (e.g. `ROBINHOOD_RPC_URL`) and a built-in default; `sailor chains` lists them.
+
+{% hint style="info" %}
+**Robinhood (4663)** uses ETH for gas and a default RPC of `https://rpc.mainnet.chain.robinhood.com`; its block explorer is [robinhoodchain.blockscout.com](https://robinhoodchain.blockscout.com), where contracts are not source-verified (the deployment reproduces the canonical addresses via CREATE2 calldata-replay from Base).
+{% endhint %}
 
 ## The same SMA on another chain
 

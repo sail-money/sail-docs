@@ -67,7 +67,7 @@ No Node.js required.
 
 ## Chains
 
-The SDK bundles verified deployments for **11 chains** — mainnets Ethereum (1), Base (8453), Arbitrum (42161), Optimism (10), Unichain (130), BSC (56), World Chain (480), HyperEVM (999), MegaETH (4326); testnets Base Sepolia (84532) and Ethereum Sepolia (11155111). Every core contract sits at the same address on every chain via CREATE2, and the seven shared permission templates are deployed and registered on all of them. Query it with `sailor chains` or `getSailDeployment(chainId)`; the canonical record is [Protocol → Deployment addresses](../protocol/reference/addresses.md).
+The SDK bundles verified deployments for **12 chains** — mainnets Ethereum (1), Base (8453), Arbitrum (42161), Optimism (10), Unichain (130), BSC (56), World Chain (480), HyperEVM (999), MegaETH (4326), Robinhood (4663); testnets Base Sepolia (84532) and Ethereum Sepolia (11155111). Every core contract sits at the same address on every chain via CREATE2, and the seven shared permission templates are deployed and registered on all of them. Query it with `sailor chains` or `getSailDeployment(chainId)`; the canonical record is [Protocol → Deployment addresses](../protocol/reference/addresses.md).
 
 ## Community
 

@@ -1,12 +1,16 @@
 # Octane security review
 
-The trusted core and the seven shared permission templates were reviewed by **[Octane](https://www.octane.security)**, an AI source-code security scanner, across **three successive analyses** (2026-06-24, 2026-06-26, 2026-06-29). The **third and final analysis (2026-06-29) identified no critical- or high-severity findings**; all reported vulnerabilities were resolved or acknowledged, and the remaining lower-severity warnings are documented, accepted by design, or out of scope.
+The trusted core and the shared permission templates **as they stood at the review** were reviewed by **[Octane](https://www.octane.security)**, an AI source-code security scanner, across **three successive analyses** (2026-06-24, 2026-06-26, 2026-06-29). The **third and final analysis (2026-06-29) identified no critical- or high-severity findings**; all reported vulnerabilities were resolved or acknowledged, and the remaining lower-severity warnings are documented, accepted by design, or out of scope.
 
 ## What was reviewed
 
-Both the trusted core — `SailKernel`, `SailGovernance`, its `TimelockController`, and the core interfaces — **and** the seven shared permission templates: `SwapPermission`, `SwapPermissionNoOracle`, `BorrowPermission`, `DepositPermission`, `WithdrawPermission`, `TransferPermission`, and `ApproveAndCallBatchPermission`.
+Both the trusted core — `SailKernel`, `SailGovernance`, its `TimelockController`, and the core interfaces — **and** the shared permission templates as they stood at the review: `SwapPermission`, `SwapPermissionNoOracle`, `BorrowPermission`, `DepositPermission`, the then-current `WithdrawPermission`, `TransferPermission`, and `ApproveAndCallBatchPermission`.
 
-**Review boundary.** The analyses cover `main` through PR #79 (commit `8d1e122`). Changes on `main` after that point are limited to documentation and deployment metadata, not trusted-core logic. Scope was defined by files and contracts; the reviewer did not state a line-count figure.
+**Review boundary.** The analyses cover `main` through PR #79 (commit `8d1e122`). Scope was defined by files and contracts; the reviewer did not state a line-count figure.
+
+{% hint style="warning" %}
+**`WithdrawPermission` v2 is not covered by this review.** After the review, `WithdrawPermission` was rewritten in place — from an ERC-20-transfer gate into a bounded vault / lending-pool exit permission (v2). That rewrite **postdates the Octane analyses and was not part of them**; its on-chain NatSpec states verbatim that "it has not been externally reviewed." It carries internal coverage only — **80 tests across three suites** (44 unit, 18 adversarial stress, 18 independent red-team), all passing. The other six shared templates are unchanged from what the review covered. See [WithdrawPermission](../../sailor/guides/configure-a-template.md#withdrawpermission-v2-bounded-position-exits).
+{% endhint %}
 
 ## Reports
 

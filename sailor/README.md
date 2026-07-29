@@ -84,5 +84,5 @@ The SDK bundles verified deployments for **12 chains** — mainnets Ethereum (1)
 * [Concepts](concepts/) · [Guides](guides/) · [CLI reference](cli/) · [SDK reference](sdk/) · [Security](security.md) · [Troubleshooting](troubleshooting.md)
 
 {% hint style="warning" %}
-The Sail Protocol trusted core and its seven shared templates were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the final analysis found no critical- or high-severity findings. That review covers the protocol contracts — **not** this harness. A security review is not a guarantee of correctness — do not operate with funds you are not prepared to lose. See [Security](security.md).
+The Sail Protocol trusted core and its shared templates **as they stood at the review** were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the final analysis found no critical- or high-severity findings. The later `WithdrawPermission` v2 rewrite is **not** covered by it. That review covers the protocol contracts — **not** this harness. A security review is not a guarantee of correctness — do not operate with funds you are not prepared to lose. See [Security](security.md).
 {% endhint %}

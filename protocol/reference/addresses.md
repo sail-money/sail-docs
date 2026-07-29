@@ -23,12 +23,20 @@ Multi-tenant templates — one deployment per chain serves every account, bound 
 | `SwapPermissionNoOracle` | `0x34Ba96CbEd1f46c88A5265E645DC5fe41662b519` |
 | `BorrowPermission` | `0x3e2666051599223cEAb10De55C89A0842857d8AF` |
 | `DepositPermission` | `0xBfB5e13a97b12Ee89d2F2b9B65eCf7e0E371911f` |
-| `WithdrawPermission` | `0xF5eF5dda450a130e3020d54f565E830e4a7531f8` |
+| `WithdrawPermission` | `0xB8A6CC40466c0C33a230f87a1EBC368568B96269` |
 | `TransferPermission` | `0xda909a1CC584fb7559Ce4A828b008B473Da095e1` |
 | `ApproveAndCallBatchPermission` | `0x0535A4D51333484ef583103DAB1a9449756ab732` |
 
+### Superseded templates (still live on-chain)
+
+| Template | Address | Notes |
+| --- | --- | --- |
+| `WithdrawPermission` (v1) | `0xF5eF5dda450a130e3020d54f565E830e4a7531f8` | The original ERC-20-transfer withdraw gate (`transfer` / `transferFrom` to one allowed recipient). Replaced in place by the vault-exit `WithdrawPermission` (v2) above, deployed under a rotated salt (`sail.template.withdraw.v2`) so the two do not collide. |
+
+The v1 contract is **not** disabled or revoked — templates are immutable and the protocol has no kill switch — but Sailor no longer references it, and no account ever registered it. New registrations use the v2 address. The two are **not** config-compatible (the blob changed from `(address[] tokens, address allowedRecipient, uint256 maxAmountPerTx)` to `(address[] targets, address[] tokens, uint256 maxAmountPerTx)`), and the introspection identity was bumped to `sail.permission.WithdrawPermission.v2` so consumers can tell them apart. Counting the superseded v1, eight withdraw-family contracts exist on-chain — but the shared-template set is still **seven**.
+
 {% hint style="info" %}
-The shared templates are **reviewed reference implementations** (see [Security](../security/README.md)), not audited drop-in production contracts. You are responsible for the correctness of any permission you register — read, verify, and test before production use. See [permission correctness is the author's responsibility](../security/limitations.md).
+The shared templates are **reference implementations** (see [Security](../security/README.md)), not audited drop-in production contracts. You are responsible for the correctness of any permission you register — read, verify, and test before production use. See [permission correctness is the author's responsibility](../security/limitations.md).
 {% endhint %}
 
 ## Governance & config (identical on every chain)
@@ -84,5 +92,5 @@ The registration fee was deployed at `0.00015` native on **every** chain (CREATE
 These are the values seeded into the kernel's trusted allowlists (`trustedSafeFactory`, `trustedSafeSingleton`, `trustedModuleSetup` → the `SafeModuleEnabler` above, `trustedFeePolicy` → the `StandardFeePolicy` above, plus the Safe-proxy runtime codehash). For this deploy, governance is the admin Safe, so allowlists were seeded post-deploy via `SailGovernance.bootstrapAllowlists()` (a one-shot, non-timelocked latch) rather than at genesis.
 
 {% hint style="info" %}
-**Security review.** The trusted core and shared templates were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the final analysis found no critical- or high-severity findings. A review is not a proof of correctness — do not use with funds you are not prepared to lose. See [Security](../security/README.md).
+**Security review.** The trusted core and the shared templates **as they stood at the review** were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the final analysis found no critical- or high-severity findings. The `WithdrawPermission` v2 rewrite postdates that review and is **not** covered by it (internal test coverage only). A review is not a proof of correctness — do not use with funds you are not prepared to lose. See [Security](../security/README.md).
 {% endhint %}

@@ -64,7 +64,7 @@ Each of the protocol's [seven shared permission templates](../protocol/permissio
 | `sailor-template-swap-no-oracle` | `SwapPermissionNoOracle` | The default bounded-swap tier: allowlists + cap + live-pool sanity band (not manipulation-resistant) |
 | `sailor-template-borrow` | `BorrowPermission` | Bounded borrows (Aave/Morpho/Compound) with protocol + asset allowlist, cap, on-chain LTV check |
 | `sailor-template-deposit` | `DepositPermission` | Deposits into ERC-4626 vaults / Aave with target + token allowlist and a per-tx cap |
-| `sailor-template-withdraw` | `WithdrawPermission` | Withdrawals to **one** fixed recipient (typically your wallet) |
+| `sailor-template-withdraw` | `WithdrawPermission` | Bounded **position exits** — ERC-4626 vault withdraw/redeem and Aave v2/v3 pool withdraw — proceeds paid **only to the account** (target allowlist + per-tx cap) |
 | `sailor-template-transfer` | `TransferPermission` | ERC-20 transfers within a per-tx cap to a recipient allowlist |
 | `sailor-template-approve-batch` | `ApproveAndCallBatchPermission` | Atomic approve → call → reset-to-zero batches with token/spender/target/selector allowlists |
 

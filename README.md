@@ -50,7 +50,7 @@ Both products — the Protocol and Sailor — are **fully open source**, free to
 
 Both **Sail Protocol** and **Sailor** are fully open source — read, fork, and build on every line. See the [Protocol repository](https://github.com/sail-money/Protocol/) and the [Sailor repository](https://github.com/sail-money/Sailor).
 
-The trusted core and shared permission templates were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses. See [Protocol → Security](protocol/security/README.md).
+The trusted core and the shared permission templates as they stood at the review were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the later `WithdrawPermission` v2 rewrite is not covered. See [Protocol → Security](protocol/security/README.md).
 
 ***
 

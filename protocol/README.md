@@ -42,5 +42,5 @@ Permission templates and fee policies live **outside** the trusted core. A bug i
 * Need addresses or signatures? See [Reference](reference/).
 
 {% hint style="warning" %}
-The trusted core and shared templates are deployed on 12 chains (10 mainnets + 2 testnets) and were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses. A security review is not a proof of correctness — do not use with funds you are not prepared to lose.
+The trusted core and shared templates are deployed on 12 chains (10 mainnets + 2 testnets). The trusted core and the templates as they stood at the review were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the later `WithdrawPermission` v2 rewrite is not covered (see [Security](security/README.md)). A security review is not a proof of correctness — do not use with funds you are not prepared to lose.
 {% endhint %}

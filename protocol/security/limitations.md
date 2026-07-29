@@ -10,7 +10,7 @@ Consequences:
 
 * **Register only audited or trusted permission contracts.** A permissive bug in a permission is a loss for the accounts that registered it.
 * **Upgradeable permissions are a trust escalation.** The kernel binds authorization to a permission *address*. If that address is an upgradeable proxy, changing its implementation requires **no new kernel signature** — so a registered upgradeable permission can later behave differently than when it was approved. Prefer non-upgradeable permissions. (Whitepaper §8.2.)
-* The seven shared templates are deployed against the current kernel (see [addresses](../reference/addresses.md)) and were included in the [Octane security review](audits.md), but they remain **reference implementations** — treat them as starting points to read, verify, and test, not as audited drop-in production contracts.
+* The seven shared templates are deployed against the current kernel (see [addresses](../reference/addresses.md)). Six of them were included in the [Octane security review](audits.md); the seventh, `WithdrawPermission`, was rewritten afterward (v2 — bounded vault/pool exits) and is **not** covered by that review (internal test coverage only). All remain **reference implementations** — treat them as starting points to read, verify, and test, not as audited drop-in production contracts.
 
 ## 2. Manager-attested NAV (the self-managed-SMA framing)
 

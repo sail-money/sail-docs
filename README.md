@@ -17,9 +17,9 @@ layout:
 
 # Sail.Money
 
-Sail is open-source infrastructure for onchain separately managed accounts. The Protocol holds capital in a self-custodial [Safe](https://safe.global) and enforces a signed mandate on every transaction; Sailor is the open-source harness that deploys accounts, builds permissions, and runs strategies from your own machine. Pick the path that matches what you're doing:
+Sail is an AI lab pioneering personalized finance. Pick the path that matches what you're doing:
 
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Protocol</strong></td><td><strong>For protocol developers &#x26; asset managers.</strong> Build directly on the smart contracts — write permission contracts, deploy SMAs, appoint managers, and integrate the kernel.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr><tr><td><strong>Sailor</strong></td><td><strong>For AI agent builders.</strong> The open-source harness for the Sail Protocol — deploys your SMA, builds your permissions, and runs your strategy on your own machine. Works with npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Sailor</strong></td><td><strong>For AI agent builders.</strong> Turn any coding agent into a DeFi agent. The open-source harness that deploys your SMA, builds your permissions, and runs your strategy on your own machine. Works with npm or Docker.</td><td><a href="sailor/README.md">sailor/README.md</a></td></tr><tr><td><strong>Protocol</strong></td><td><strong>For developers and asset managers.</strong> The first onchain primitive for separately managed accounts: personalized, non-custodial capital delegation to a manager. Write permission contracts, deploy SMAs, appoint managers, and integrate the kernel.</td><td><a href="protocol/README.md">protocol/README.md</a></td></tr></tbody></table>
 
 Both products — the Protocol and Sailor — are **fully open source**, free to read, fork, and build on.
 
@@ -27,8 +27,8 @@ Both products — the Protocol and Sailor — are **fully open source**, free to
 
 | You want to… | Go to |
 | --- | --- |
-| Write Solidity permission contracts, or integrate `SailKernel` / `MandateFactory` from your own code | **Protocol** |
 | Ship an agent that runs a strategy on an SMA, using a ready-made SDK + CLI | **Sailor** |
+| Write Solidity permission contracts, or integrate `SailKernel` / `MandateFactory` from your own code | **Protocol** |
 | Understand the security model, fees, or governance before building | **Protocol → Concepts / Security** |
 
 ## For coding agents

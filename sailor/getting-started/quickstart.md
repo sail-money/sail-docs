@@ -74,6 +74,8 @@ sailor mandate deploy --contract MyPermission --attach --sma 0xYourSMA  # deploy
 
 `mandate simulate` proves the permission accepts the calls you want and rejects the ones you don't, **before** you spend gas or authorize it on-chain. See [Simulate before going live](../guides/simulate.md).
 
+**Optional: rehearse it first.** [Shipyard](../shipyard.md) forks the real chains onto your own machine with fake money, so you can take the whole journey (deploy, register, configure, run) without spending anything. It needs Foundry, and it keeps its own state entirely separate from `.sail/`. Start it with `sailor sandbox start`.
+
 ## 6. Run the agent
 
 ```bash

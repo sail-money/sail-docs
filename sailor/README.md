@@ -1,8 +1,8 @@
 # Overview
 
-> The open-source harness for [Sail Protocol](../protocol/) — it deploys your SMA, builds your permissions, and runs your strategy on your own machine.
+> Turn any coding agent into a DeFi agent. Sailor is the open-source harness for [Sail Protocol](../protocol/): it deploys your SMA, builds your permissions, and runs your strategy on your own machine.
 
-Sailor is the operator layer for building and running DeFi agents on Sail Protocol. It works through any AI coding agent (Claude Code, Cursor, Codex, or others): from a scaffolded project, it deploys a separately managed account, authors and registers the mandate, and runs the strategy — all locally.
+Sailor is the operator layer for building and running DeFi agents on Sail Protocol. It ships through the coding agents developers already use (Claude, Cursor, Codex, Gemini, Grok, Hermes, and other compatible agents): from a scaffolded project, it deploys a separately managed account, authors and registers the mandate, and runs the strategy, all locally. No single agent is required.
 
 Funds remain in your own **separately managed account (SMA)**. The agent never holds your owner key and acts only through a **mandate** — deterministic on-chain permissions the [protocol](../protocol/) checks on every transaction. That bound is what makes a Sailor agent safe to run with real capital.
 

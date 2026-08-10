@@ -29,3 +29,9 @@ Suppose you want an agent that dollar-cost-averages USDC into WETH, at most 100 
 If a bug makes your agent try to buy 1,000 USDC or swap on the wrong router, the permission returns false and the dispatch reverts. The cap is real because it's on-chain; the schedule is best-effort because it's off-chain.
 
 Keep this split in mind when designing: **put every rule that protects capital into a permission**, and leave only timing and selection to the agent.
+
+## Two modes, one codebase
+
+The dashboard runs in one of two modes: live, or **Shipyard**, the simulation sandbox. They are not a flag on a shared server. Each is a separate process running the same server code, pointed at a different state root (`.sail/` versus `.shipyard/sandbox/`) on a different port, and the fork-lifecycle routes exist only on the Shipyard instance. Nothing in the live process can read or write the Shipyard root, and nothing in Shipyard can reach the live one.
+
+That separation is what makes the boundary above testable: in Shipyard the kernel, the permission contracts, and the Safe are the real deployed contracts, carried in by a local fork of the chain, so a dispatch is evaluated by the same code that would evaluate it on mainnet. Only the money is fake. See [Shipyard](../shipyard.md).

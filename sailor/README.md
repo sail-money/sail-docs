@@ -39,6 +39,7 @@ Every step has a direct CLI equivalent, so nothing is hidden behind the agent. T
 | **SDK** (`@sail.money/sailor/sdk`) | `SailorClient`, the `Agent` interface, encrypted keyring, EIP-712 signing, dispatch submission, deployment + chain registries, template encoders. See the [SDK reference](sdk/). |
 | **CLI** (`sailor`) | Everything from `sailor init` to `sailor run`: keys, SMA deployment, the full mandate lifecycle, the agent loop, session control, doctor. See the [CLI reference](cli/). |
 | **Dashboard** (`sailor ui`) | A local web app for onboarding, wallet gas balances, mandate health, activity, and owner signing — read from the project's `.sail/`, no hosted backend. See the [Dashboard](dashboard.md). |
+| **Shipyard** (`sailor sandbox`) | A simulation sandbox that forks the real chains onto your own machine with fake money, against the real deployed contracts, so you can rehearse the whole setup and prove a mandate permits what you think it permits. Real market state, frozen at fork time; fully isolated from live. Needs Foundry. See [Shipyard](shipyard.md). |
 | **Skills** | **22** curated procedures under `.agents/skills/`, organized by the five stations — onboarding and diagnostics, strategy definition, mandate construction (one skill per shared template plus the full custom-permission lifecycle), agent construction with a verified code skeleton, and unattended operation through exit. The skills *are* the harness: any coding agent reads them natively and follows the same verified path in every project. See [Skills](skills.md). |
 
 ## Install
@@ -80,7 +81,7 @@ The SDK bundles verified deployments for **12 chains** — mainnets Ethereum (1)
 
 * [Quickstart](getting-started/quickstart.md) — install, and go from zero to a dispatched transaction.
 * [Operate Sailor with a coding agent](getting-started/coding-agent.md) — the flagship workflow.
-* [Skills](skills.md) · [npm package](packages.md) · [Docker](docker.md) · [Dashboard](dashboard.md)
+* [Skills](skills.md) · [npm package](packages.md) · [Docker](docker.md) · [Dashboard](dashboard.md) · [Shipyard](shipyard.md)
 * [Concepts](concepts/) · [Guides](guides/) · [CLI reference](cli/) · [SDK reference](sdk/) · [Security](security.md) · [Troubleshooting](troubleshooting.md)
 
 {% hint style="warning" %}

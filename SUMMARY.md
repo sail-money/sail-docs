@@ -71,6 +71,7 @@
   * [The Agent interface](sailor/sdk/agent.md)
   * [Exports & helpers](sailor/sdk/reference.md)
 * [Dashboard (local UI)](sailor/dashboard.md)
+* [Shipyard (simulation sandbox)](sailor/shipyard.md)
 * [Security](sailor/security.md)
 * [Troubleshooting & FAQ](sailor/troubleshooting.md)
 

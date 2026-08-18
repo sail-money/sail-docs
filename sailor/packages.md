@@ -1,6 +1,6 @@
 # npm package
 
-Sailor ships as a single published package — [`@sail.money/sailor`](https://www.npmjs.com/package/@sail.money/sailor) (latest **1.3.0**, MIT). It contains **both** the `sailor` CLI and the SDK; the SDK is exposed as a subpath export. There is **no separate `@sail.money/sdk` package** — `@sail.money/sailor` is the one package you install.
+Sailor ships as a single published package — [`@sail.money/sailor`](https://www.npmjs.com/package/@sail.money/sailor) (MIT). It contains **both** the `sailor` CLI and the SDK; the SDK is exposed as a subpath export. There is **no separate `@sail.money/sdk` package** — `@sail.money/sailor` is the one package you install.
 
 ## Install & scaffold
 

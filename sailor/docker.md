@@ -1,6 +1,6 @@
 # Docker
 
-Run Sailor from the pre-built [`sailmoney/sailor`](https://hub.docker.com/r/sailmoney/sailor) image — **no Node.js on the host**, an isolated environment, the same CLI. The image is built from the repo's `Dockerfile` (linux/amd64 + linux/arm64, published with SBOM and provenance attestations) and contains exactly the files npm publishes. Tags: `latest` and the pinned version (`1.3.0`).
+Run Sailor from the pre-built [`sailmoney/sailor`](https://hub.docker.com/r/sailmoney/sailor) image — **no Node.js on the host**, an isolated environment, the same CLI. The image is built from the repo's `Dockerfile` (linux/amd64 + linux/arm64, published with SBOM and provenance attestations) and contains exactly the files npm publishes. Tags: `latest` and per-release pinned versions.
 
 ## Start a project
 

@@ -26,18 +26,27 @@
   --sail-radius: 3px;
 }
 
-/* Headings use the display face. */
+/* Titles use FK Display Trial (the landing's headline face). */
 :root {
-  --sl-font-display: "Instrument Sans", "DM Sans", sans-serif;
+  --sl-font-display: "FK Display Trial", "Instrument Sans", "DM Sans", sans-serif;
 }
+h1, h2, h3,
 .sl-markdown-content h1,
 .sl-markdown-content h2,
 .sl-markdown-content h3,
-.sl-markdown-content h4,
-h1, h2, h3,
-.site-title {
+.sl-markdown-content h4 {
   font-family: var(--sl-font-display);
   letter-spacing: -0.01em;
+}
+
+/* Header wordmark: SAIL, in Instrument Sans 700, tight tracking, white, uppercase,
+   matching the landing header (.word: --font-display, 700, -0.02em, --text-primary). */
+.site-title {
+  font-family: "Instrument Sans", "DM Sans", sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--sl-color-white) !important;
 }
 
 /* Tabular figures for code, addresses, and numbers. */

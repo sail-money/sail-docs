@@ -307,3 +307,12 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
 .sidebar-content a[href^="/"]:hover {
   color: var(--sl-color-white);
 }
+
+/* The four top-level titles (For AI agents, Sailor, Protocol, Legal) are bold + white;
+   nested sub-group headings and links stay quiet grey. (ul.top-level sits inside an
+   sl-sidebar-state-persist wrapper, so match it as a descendant of sidebar-content.) */
+.sidebar-content ul.top-level > li > details > summary .large,
+.sidebar-content ul.top-level > li > a.large {
+  font-weight: 700 !important;
+  color: var(--sl-color-white) !important;
+}

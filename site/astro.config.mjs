@@ -6,10 +6,12 @@ import starlightLlmsTxt from "starlight-llms-txt";
 // Section-index pages (with children) appear as the first item of their group.
 const sailor = {
   label: "Sailor",
+  collapsed: true,
   items: [
     { label: "Overview", slug: "sailor/sailor" },
     {
       label: "Getting started",
+      collapsed: true,
       items: [
         { label: "Getting started", slug: "sailor/getting-started" },
         { label: "Quickstart", slug: "sailor/getting-started/quickstart" },
@@ -21,6 +23,7 @@ const sailor = {
     { label: "Skills", slug: "sailor/skills" },
     {
       label: "Concepts",
+      collapsed: true,
       items: [
         { label: "Concepts", slug: "sailor/concepts" },
         { label: "Sailor & the Protocol", slug: "sailor/concepts/protocol-mapping" },
@@ -30,6 +33,7 @@ const sailor = {
     },
     {
       label: "Guides",
+      collapsed: true,
       items: [
         { label: "Guides", slug: "sailor/guides" },
         { label: "Deploy & predict an SMA", slug: "sailor/guides/deploy-sma" },
@@ -44,6 +48,7 @@ const sailor = {
     { label: "CLI reference", slug: "sailor/cli" },
     {
       label: "SDK reference",
+      collapsed: true,
       items: [
         { label: "SDK reference", slug: "sailor/sdk" },
         { label: "SailorClient", slug: "sailor/sdk/client" },
@@ -60,10 +65,12 @@ const sailor = {
 
 const protocol = {
   label: "Protocol",
+  collapsed: true,
   items: [
     { label: "Overview", slug: "protocol/protocol" },
     {
       label: "Concepts",
+      collapsed: true,
       items: [
         { label: "Concepts", slug: "protocol/concepts" },
         { label: "Separately Managed Accounts", slug: "protocol/concepts/smas" },
@@ -76,6 +83,7 @@ const protocol = {
     },
     {
       label: "Architecture",
+      collapsed: true,
       items: [
         { label: "Architecture", slug: "protocol/architecture" },
         { label: "SailKernel", slug: "protocol/architecture/kernel" },
@@ -87,6 +95,7 @@ const protocol = {
     },
     {
       label: "Permission system",
+      collapsed: true,
       items: [
         { label: "Permission system", slug: "protocol/permissions" },
         { label: "IPermission & Context", slug: "protocol/permissions/ipermission" },
@@ -98,6 +107,7 @@ const protocol = {
     },
     {
       label: "Guides",
+      collapsed: true,
       items: [
         { label: "Guides", slug: "protocol/guides" },
         { label: "Write your first permission", slug: "protocol/guides/write-a-permission" },
@@ -109,6 +119,7 @@ const protocol = {
     },
     {
       label: "Fees & governance",
+      collapsed: true,
       items: [
         { label: "Fees & governance", slug: "protocol/fees-and-governance" },
         { label: "Fee model", slug: "protocol/fees-and-governance/fees" },
@@ -117,6 +128,7 @@ const protocol = {
     },
     {
       label: "Security",
+      collapsed: true,
       items: [
         { label: "Security", slug: "protocol/security" },
         { label: "Guarantees", slug: "protocol/security/guarantees" },
@@ -126,6 +138,7 @@ const protocol = {
     },
     {
       label: "Reference",
+      collapsed: true,
       items: [
         { label: "Reference", slug: "protocol/reference" },
         { label: "Deployment addresses", slug: "protocol/reference/addresses" },
@@ -139,6 +152,7 @@ const protocol = {
 
 const legal = {
   label: "Legal",
+  collapsed: true,
   items: [
     { label: "Overview", slug: "legal/legal" },
     { label: "Terms of Use", slug: "legal/terms-of-use" },

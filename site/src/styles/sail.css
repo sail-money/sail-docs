@@ -318,9 +318,11 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
 }
 
 /* Nested sub-group headers (Getting started, Concepts, Guides, …) carry Starlight's .large
-   size, one notch larger than their sibling links. Inherit the list's base size instead so
-   every item inside an expanded group matches exactly, at every breakpoint. Top-level titles
-   are unaffected — their .large is a direct child of ul.top-level, not inside a nested <ul>. */
+   size, one notch larger than their sibling links — and the link size itself switches with
+   the viewport. Pin both the nested links and the nested headers to the same size so every
+   item inside an expanded group matches exactly at every breakpoint. Top-level titles are
+   unaffected — their .large is a direct child of ul.top-level, not inside a nested <ul>. */
+.sidebar-content ul.top-level ul a,
 .sidebar-content ul.top-level ul .large {
-  font-size: inherit !important;
+  font-size: var(--sl-text-sm) !important;
 }

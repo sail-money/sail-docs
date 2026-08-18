@@ -13,10 +13,12 @@
   --sail-blue-900: #0060b0;
 
   --sail-canvas: #000000;
-  --sail-surface: #05070d;
-  --sail-surface-2: #030c1c;
+  --sail-surface: #111215;   /* manual: Surface 900, default card */
+  --sail-surface-2: #161719; /* manual: Surface 850 */
   --sail-hairline: rgba(255, 255, 255, 0.09);
+  --sail-hairline-strong: rgba(255, 255, 255, 0.14);
   --sail-hairline-soft: rgba(255, 255, 255, 0.06);
+  --sail-rim: inset 0 1px 0 rgba(255, 255, 255, 0.06); /* manual: top rim of light */
 
   --sl-font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --sl-font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, "SF Mono", monospace;
@@ -146,11 +148,69 @@ button,
   color: var(--sail-blue-400);
 }
 
-/* Sidebar current item marked in blue, not a pill. */
+/* Sidebar current item: blue text on a faint blue wash, never a solid fill.
+   (Fixes the blue-on-blue block: Starlight's default fills the active item with the
+   accent color, and our accent text color made it invisible.) */
 .sidebar-content a[aria-current="page"] {
-  color: var(--sail-blue-500);
+  color: var(--sail-blue-500) !important;
+  background-color: rgba(25, 144, 255, 0.10) !important;
   border-radius: var(--sail-radius);
+  font-weight: 600;
 }
+
+/* Page banner (the GitBook covers): full-width, sharp, hairline. */
+.sl-markdown-content .page-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1280 / 420;
+  object-fit: cover;
+  border: 1px solid var(--sail-hairline);
+  border-radius: var(--sail-radius);
+  margin: 0 0 1.75rem;
+}
+
+/* Richer near-black canvas per the manual (true deep field, quiet). */
+:root[data-theme="dark"] {
+  --sl-color-bg: #000000;
+  --sl-color-bg-nav: rgba(0, 0, 0, 0.72);
+  --sl-color-bg-sidebar: #060709;
+}
+
+/* Surfaces: flat raised panels lifted by a hairline + a top rim of light. */
+.sl-markdown-content pre,
+.starlight-aside,
+.sl-markdown-content table,
+.sail-card {
+  box-shadow: var(--sail-rim);
+}
+.sl-markdown-content pre {
+  border: 1px solid var(--sail-hairline);
+  background: var(--sail-surface) !important;
+}
+
+/* Lead paragraph: the overview intro is authored as a blockquote; render it as a
+   quiet lead, not a heavy quote box. */
+.sl-markdown-content > blockquote:first-of-type {
+  border-inline-start: 2px solid var(--sail-blue-600);
+  background: rgba(25, 144, 255, 0.05);
+  border-radius: var(--sail-radius);
+  padding: 0.85rem 1.1rem;
+  font-size: 1.05rem;
+  color: var(--sl-color-white);
+}
+.sl-markdown-content > blockquote:first-of-type p { margin: 0; }
+
+/* Inline code and addresses: hairline chip, tabular. */
+.sl-markdown-content :not(pre) > code {
+  border: 1px solid var(--sail-hairline-soft);
+  border-radius: var(--sail-radius);
+  padding: 0.1em 0.35em;
+}
+
+/* Comfortable reading measure and heading rhythm. */
+.sl-markdown-content { --sl-content-width: 50rem; }
+.sl-markdown-content h2 { margin-top: 2.2rem; }
 
 /* Landing route cards: faithful, clickable, hairline, sharp corners, blue on hover. */
 .sail-cards {

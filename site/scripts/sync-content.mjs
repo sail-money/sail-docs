@@ -176,6 +176,16 @@ for (const src of sources) {
   const c = convertCards(body); body = c.body;
   body = rewriteLinks(body, src);
 
+  // Page banners (the GitBook covers): home, Sailor overview, Protocol overview.
+  const BANNERS = {
+    "README.md": "/brand/banner-home.jpg",
+    "sailor/README.md": "/brand/banner-sailor.jpg",
+    "protocol/README.md": "/brand/banner-protocol.jpg",
+  };
+  if (BANNERS[src]) {
+    body = `<img class="page-banner" src="${BANNERS[src]}" alt="" />\n\n` + body.trimStart();
+  }
+
   const needsMdx = t.used || c.used;
   const imports = [];
   if (t.used) imports.push('import { Tabs, TabItem } from "@astrojs/starlight/components";');

@@ -163,7 +163,7 @@ export default defineConfig({
       description: "Onchain Separately Managed Accounts Run By Agents.",
       logo: { src: "./src/assets/sail-logo.png", alt: "Sail" },
       favicon: "/favicon.png",
-      customCss: ["./src/styles/sail.css"],
+      customCss: ["./src/styles/fonts.css", "./src/styles/sail.css"],
       pagefind: true,
       social: [
         { icon: "discord", label: "Discord", href: "https://discord.gg/9GsxPsHzRv" },
@@ -177,15 +177,8 @@ export default defineConfig({
           content:
             "try{var k='starlight-theme';if(!localStorage.getItem(k)){localStorage.setItem(k,'dark');document.documentElement.dataset.theme='dark'}}catch(e){}",
         },
-        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
-        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
-        {
-          tag: "link",
-          attrs: {
-            rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
-          },
-        },
+        { tag: "link", attrs: { rel: "preload", as: "font", type: "font/ttf", href: "/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf", crossorigin: true } },
+        { tag: "link", attrs: { rel: "preload", as: "font", type: "font/otf", href: "/fonts/FK_Display/FKDisplayTrial-Regular.otf", crossorigin: true } },
       ],
       sidebar: [
         { label: "For AI agents", slug: "for-ai-agents" },

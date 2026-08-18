@@ -1,0 +1,193 @@
+/* Sail identity for Starlight. Tokens extracted from the live landing (sail.money):
+   fonts DM Sans / Instrument Sans / JetBrains Mono; blue scale #1990FF/#4DABFF/#0E78EA;
+   true-black canvas with a #05070d lifted surface; hairline rgba(255,255,255,.09);
+   success is blue (never green); danger #FF5C6C; sharp corners (<= 3px), no pills. */
+
+:root {
+  --sail-blue-100: #eaf5ff;
+  --sail-blue-200: #cfeaff;
+  --sail-blue-400: #66c2ff;
+  --sail-blue-500: #4dabff; /* hover / bright */
+  --sail-blue-600: #1990ff; /* accent */
+  --sail-blue-700: #0e78ea; /* pressed */
+  --sail-blue-900: #0060b0;
+
+  --sail-canvas: #000000;
+  --sail-surface: #05070d;
+  --sail-surface-2: #030c1c;
+  --sail-hairline: rgba(255, 255, 255, 0.09);
+  --sail-hairline-soft: rgba(255, 255, 255, 0.06);
+
+  --sl-font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sl-font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, "SF Mono", monospace;
+
+  --sail-radius: 3px;
+}
+
+/* Headings use the display face. */
+:root {
+  --sl-font-display: "Instrument Sans", "DM Sans", sans-serif;
+}
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+h1, h2, h3,
+.site-title {
+  font-family: var(--sl-font-display);
+  letter-spacing: -0.01em;
+}
+
+/* Tabular figures for code, addresses, and numbers. */
+code, kbd, samp, pre, .sl-markdown-content code {
+  font-family: var(--sl-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* ---- Dark theme (the default) ---- */
+:root,
+:root[data-theme="dark"] {
+  --sl-color-accent-low: rgba(25, 144, 255, 0.14);
+  --sl-color-accent: var(--sail-blue-600);
+  --sl-color-accent-high: var(--sail-blue-500);
+
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: rgba(255, 255, 255, 0.92);
+  --sl-color-gray-2: rgba(255, 255, 255, 0.72);
+  --sl-color-gray-3: rgba(255, 255, 255, 0.56);
+  --sl-color-gray-4: rgba(255, 255, 255, 0.4);
+  --sl-color-gray-5: rgba(255, 255, 255, 0.18);
+  --sl-color-gray-6: rgba(255, 255, 255, 0.11);
+  --sl-color-gray-7: rgba(255, 255, 255, 0.06);
+  --sl-color-black: #000000;
+
+  --sl-color-bg: var(--sail-canvas);
+  --sl-color-bg-nav: rgba(0, 0, 0, 0.9);
+  --sl-color-bg-sidebar: var(--sail-surface);
+  --sl-color-bg-inline-code: rgba(255, 255, 255, 0.05);
+  --sl-color-bg-accent: var(--sail-blue-600);
+
+  --sl-color-text: rgba(255, 255, 255, 0.92);
+  --sl-color-text-accent: var(--sail-blue-500);
+  --sl-color-text-invert: #000000;
+
+  --sl-color-hairline: var(--sail-hairline);
+  --sl-color-hairline-light: var(--sail-hairline);
+  --sl-color-hairline-shade: var(--sail-hairline-soft);
+}
+
+/* ---- Light theme (fallback) ---- */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #cfeaff;
+  --sl-color-accent: var(--sail-blue-700);
+  --sl-color-accent-high: var(--sail-blue-900);
+  --sl-color-white: #05070d;
+  --sl-color-gray-1: #0a0f1a;
+  --sl-color-gray-2: #2b3444;
+  --sl-color-gray-3: #4a5568;
+  --sl-color-gray-6: #e6e9ef;
+  --sl-color-gray-7: #f2f4f8;
+  --sl-color-black: #ffffff;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-sidebar: #fafbfc;
+  --sl-color-text-accent: var(--sail-blue-700);
+  --sl-color-hairline: rgba(0, 0, 0, 0.1);
+}
+
+/* Sharp corners, hairline borders, no heavy shadows anywhere. */
+.card,
+.sl-link-card,
+:root .starlight-aside,
+pre,
+.sl-markdown-content pre,
+.sl-markdown-content table,
+img,
+input,
+button,
+.sl-markdown-content blockquote {
+  border-radius: var(--sail-radius) !important;
+}
+:root {
+  --sl-shadow-sm: none;
+  --sl-shadow-md: none;
+  --sl-shadow-lg: none;
+}
+
+/* Asides: info -> blue (note), success (tip) -> blue, warning (caution) -> neutral
+   hairline (no amber), danger -> the landing red. Success is never green. */
+.starlight-aside--note,
+.starlight-aside--tip {
+  border-inline-start-color: var(--sail-blue-600);
+  background-color: rgba(25, 144, 255, 0.08);
+}
+.starlight-aside--note .starlight-aside__title,
+.starlight-aside--tip .starlight-aside__title {
+  color: var(--sail-blue-500);
+}
+.starlight-aside--caution {
+  border-inline-start-color: rgba(255, 255, 255, 0.28);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+.starlight-aside--caution .starlight-aside__title {
+  color: rgba(255, 255, 255, 0.86);
+}
+.starlight-aside--danger {
+  border-inline-start-color: #ff5c6c;
+  background-color: rgba(255, 92, 108, 0.08);
+}
+
+/* Links and inline code in prose read in the accent blue. */
+.sl-markdown-content a {
+  color: var(--sail-blue-500);
+  text-underline-offset: 0.2em;
+}
+.sl-markdown-content a:hover {
+  color: var(--sail-blue-400);
+}
+
+/* Sidebar current item marked in blue, not a pill. */
+.sidebar-content a[aria-current="page"] {
+  color: var(--sail-blue-500);
+  border-radius: var(--sail-radius);
+}
+
+/* Landing route cards: faithful, clickable, hairline, sharp corners, blue on hover. */
+.sail-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+@media (max-width: 640px) {
+  .sail-cards { grid-template-columns: 1fr; }
+}
+.sail-card {
+  display: block;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--sail-hairline);
+  border-radius: var(--sail-radius);
+  background: var(--sail-surface);
+  text-decoration: none;
+  color: var(--sl-color-white);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.sail-card:hover {
+  border-color: var(--sail-blue-600);
+  background: rgba(25, 144, 255, 0.06);
+}
+.sail-card-title {
+  display: block;
+  font-family: var(--sl-font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--sl-color-white);
+}
+.sail-card:hover .sail-card-title { color: var(--sail-blue-500); }
+.sail-card-body {
+  display: block;
+  color: var(--sl-color-gray-2);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.sail-card-body strong { color: var(--sl-color-white); }

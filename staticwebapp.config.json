@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+  "trailingSlash": "never",
+  "routes": [
+    { "route": "/sailor", "redirect": "/sailor/sailor", "statusCode": 301 },
+    { "route": "/protocol", "redirect": "/protocol/protocol", "statusCode": 301 },
+    { "route": "/legal", "redirect": "/legal/legal", "statusCode": 301 }
+  ],
+  "navigationFallback": {
+    "rewrite": "/404.html",
+    "exclude": ["/assets/*", "/pagefind/*", "*.{css,js,png,jpg,jpeg,svg,webp,ico,txt,xml,woff,woff2}"]
+  },
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html" }
+  },
+  "mimeTypes": {
+    ".txt": "text/plain",
+    ".json": "application/json"
+  }
+}

@@ -20,6 +20,10 @@ A representative slice of the scaffolded skills, by station (the full set of **2
 ## The flow
 
 ```bash
+# scaffold in the current folder
+npm i @sail.money/sailor ; npx sailor init
+
+# or scaffold into a new folder
 npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 

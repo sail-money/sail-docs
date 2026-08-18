@@ -16,6 +16,10 @@ Install the package and scaffold — Sailor works with any agent, via **npm** or
 **npm**
 
 ```bash
+# scaffold in the current folder
+npm i @sail.money/sailor ; npx sailor init
+
+# or scaffold into a new folder
 npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 

@@ -7,12 +7,20 @@ Sailor ships as a single published package — [`@sail.money/sailor`](https://ww
 {% tabs %}
 {% tab title="bash / zsh (macOS, Linux)" %}
 ```bash
+# scaffold in the current folder
+npm i @sail.money/sailor ; npx sailor init
+
+# or scaffold into a new folder
 npx @sail.money/sailor init my-agent && cd my-agent && npm install
 ```
 {% endtab %}
 
 {% tab title="PowerShell (Windows)" %}
 ```powershell
+# scaffold in the current folder
+npm i @sail.money/sailor ; npx sailor init
+
+# or scaffold into a new folder
 npx @sail.money/sailor init my-agent ; cd my-agent ; npm install
 ```
 {% endtab %}

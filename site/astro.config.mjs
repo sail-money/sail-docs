@@ -35,7 +35,6 @@ const sailor = {
         { label: "Deploy & predict an SMA", slug: "sailor/guides/deploy-sma" },
         { label: "Build & register a mandate", slug: "sailor/guides/build-a-mandate" },
         { label: "Configure a shared template", slug: "sailor/guides/configure-a-template" },
-        { label: "WithdrawPermission (v2)", slug: "sailor/guides/withdraw-permission" },
         { label: "Run a strategy & dispatch", slug: "sailor/guides/run-a-strategy" },
         { label: "Simulate before going live", slug: "sailor/guides/simulate" },
         { label: "Multi-chain operation", slug: "sailor/guides/multi-chain" },
@@ -184,6 +183,12 @@ export default defineConfig({
         },
         { tag: "link", attrs: { rel: "preload", as: "font", type: "font/ttf", href: "/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf", crossorigin: true } },
         { tag: "link", attrs: { rel: "preload", as: "font", type: "font/otf", href: "/fonts/FK_Display/FKDisplayTrial-Regular.otf", crossorigin: true } },
+        {
+          // Open the header social links in a new tab.
+          tag: "script",
+          content:
+            "addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.social-icons a').forEach(function(a){a.target='_blank';a.rel='noopener noreferrer';});});",
+        },
       ],
       sidebar: [
         { label: "For AI agents", slug: "for-ai-agents" },

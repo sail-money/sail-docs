@@ -88,23 +88,7 @@ code, kbd, samp, pre, .sl-markdown-content code {
   --sl-color-hairline-shade: var(--sail-hairline-soft);
 }
 
-/* ---- Light theme (fallback) ---- */
-:root[data-theme="light"] {
-  --sl-color-accent-low: #cfeaff;
-  --sl-color-accent: var(--sail-blue-700);
-  --sl-color-accent-high: var(--sail-blue-900);
-  --sl-color-white: #05070d;
-  --sl-color-gray-1: #0a0f1a;
-  --sl-color-gray-2: #2b3444;
-  --sl-color-gray-3: #4a5568;
-  --sl-color-gray-6: #e6e9ef;
-  --sl-color-gray-7: #f2f4f8;
-  --sl-color-black: #ffffff;
-  --sl-color-bg: #ffffff;
-  --sl-color-bg-sidebar: #fafbfc;
-  --sl-color-text-accent: var(--sail-blue-700);
-  --sl-color-hairline: rgba(0, 0, 0, 0.1);
-}
+/* Dark-only site: no light theme, no theme switcher. */
 
 /* Sharp corners, hairline borders, no heavy shadows anywhere. */
 .card,

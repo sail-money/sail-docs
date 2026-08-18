@@ -35,6 +35,7 @@ const sailor = {
         { label: "Deploy & predict an SMA", slug: "sailor/guides/deploy-sma" },
         { label: "Build & register a mandate", slug: "sailor/guides/build-a-mandate" },
         { label: "Configure a shared template", slug: "sailor/guides/configure-a-template" },
+        { label: "WithdrawPermission (v2)", slug: "sailor/guides/withdraw-permission" },
         { label: "Run a strategy & dispatch", slug: "sailor/guides/run-a-strategy" },
         { label: "Simulate before going live", slug: "sailor/guides/simulate" },
         { label: "Multi-chain operation", slug: "sailor/guides/multi-chain" },
@@ -163,6 +164,10 @@ export default defineConfig({
       description: "Onchain Separately Managed Accounts Run By Agents.",
       logo: { src: "./src/assets/sail-logo.png", alt: "Sail" },
       favicon: "/favicon.png",
+      components: {
+        // Dark-only: remove the light/auto theme switcher entirely.
+        ThemeSelect: "./src/components/ThemeSelect.astro",
+      },
       customCss: ["./src/styles/fonts.css", "./src/styles/sail.css"],
       pagefind: true,
       social: [
@@ -172,10 +177,10 @@ export default defineConfig({
       ],
       head: [
         {
-          // Dark mode as the default when the visitor has expressed no preference.
+          // Dark-only: force dark and pin the stored preference so nothing switches.
           tag: "script",
           content:
-            "try{var k='starlight-theme';if(!localStorage.getItem(k)){localStorage.setItem(k,'dark');document.documentElement.dataset.theme='dark'}}catch(e){}",
+            "try{localStorage.setItem('starlight-theme','dark')}catch(e){}document.documentElement.dataset.theme='dark';",
         },
         { tag: "link", attrs: { rel: "preload", as: "font", type: "font/ttf", href: "/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf", crossorigin: true } },
         { tag: "link", attrs: { rel: "preload", as: "font", type: "font/otf", href: "/fonts/FK_Display/FKDisplayTrial-Regular.otf", crossorigin: true } },

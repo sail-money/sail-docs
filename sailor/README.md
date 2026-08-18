@@ -20,17 +20,9 @@ Autonomous money agents for any use case:
 
 These are examples, not a boundary. Permissions are arbitrary Solidity, so anything in DeFi can be expressed as a permission and operated by an agent. When no shared template fits, you author your own `IPermission` — see [Build & register a mandate](guides/build-a-mandate.md).
 
-## How it works — five stations
+## How it works
 
-Open the scaffold in Claude Code, Cursor, Codex, or any AI coding agent and say **start**. The agent walks the journey with you, five stations end to end:
-
-1. **Arrive** — set up your self-custodial SMA.
-2. **Strategy** — define what your agent does in DeFi.
-3. **Mandate** — the on-chain bounds it runs inside.
-4. **Agent** — build the tick loop.
-5. **Sail** — launch, operate, and run it locally.
-
-Every step has a direct CLI equivalent, so nothing is hidden behind the agent. These docs are written to be read by that agent too — see [For AI agents](../for-ai-agents.md) for a ready-made prompt and machine-readable context.
+Open the scaffold in Claude Code, Cursor, Codex, or any AI coding agent and say **start**. The agent walks the journey with you — set up the SMA, define the strategy, build and sign the mandate, write the tick loop, then launch and operate — with a direct CLI equivalent for every step. See [Operate Sailor with a coding agent](getting-started/coding-agent.md), or point your assistant at the docs with the ready-made prompt on [For AI agents](../for-ai-agents.md).
 
 ## Components
 
@@ -44,49 +36,16 @@ Every step has a direct CLI equivalent, so nothing is hidden behind the agent. T
 
 ## Install
 
-Two ways — both scaffold the same project. Full detail: [npm package](packages.md) · [Docker](docker.md).
-
-{% tabs %}
-{% tab title="npm" %}
-```bash
-# scaffold in the current folder
-npm i @sail.money/sailor ; npx sailor init
-
-# or scaffold into a new folder
-npx @sail.money/sailor init my-agent && cd my-agent && npm install
-```
-
-Requires Node.js ≥ 18. Then open the folder in your coding agent and say **start**.
-{% endtab %}
-
-{% tab title="Docker" %}
-```bash
-mkdir my-agent && cd my-agent
-docker run -d --name agent -P -v "${PWD}:/workspace" sailmoney/sailor
-docker exec agent sailor init
-```
-
-No Node.js required.
-{% endtab %}
-{% endtabs %}
-
-## Chains
-
-The SDK bundles verified deployments for **12 chains** — mainnets Ethereum (1), Base (8453), Arbitrum (42161), Optimism (10), Unichain (130), BSC (56), World Chain (480), HyperEVM (999), MegaETH (4326), Robinhood (4663); testnets Base Sepolia (84532) and Ethereum Sepolia (11155111). Every core contract sits at the same address on every chain via CREATE2, and the seven shared permission templates are deployed and registered on all of them. Query it with `sailor chains` or `getSailDeployment(chainId)`; the canonical record is [Protocol → Deployment addresses](../protocol/reference/addresses.md).
-
-## Community
-
-* **Discord** — [discord.gg/9GsxPsHzRv](https://discord.gg/9GsxPsHzRv)
-* **X** — [@SaildotMoney](https://x.com/SaildotMoney)
-* **GitHub** — [github.com/sail-money](https://github.com/sail-money)
-* **npm** — [@sail.money/sailor](https://www.npmjs.com/package/@sail.money/sailor)
+Requires Node.js ≥ 18, or run it from Docker with no Node.js at all. The exact commands are on the [npm package](packages.md) and [Docker](docker.md) pages, and the [Quickstart](getting-started/quickstart.md) walks the whole first run.
 
 ## Where to go next
 
-* [Quickstart](getting-started/quickstart.md) — install, and go from zero to a dispatched transaction.
-* [Operate Sailor with a coding agent](getting-started/coding-agent.md) — the flagship workflow.
-* [Skills](skills.md) · [npm package](packages.md) · [Docker](docker.md) · [Dashboard](dashboard.md) · [Shipyard](shipyard.md)
-* [Concepts](concepts/) · [Guides](guides/) · [CLI reference](cli/) · [SDK reference](sdk/) · [Security](security.md) · [Troubleshooting](troubleshooting.md)
+* [Quickstart](getting-started/quickstart.md) — install and go from zero to a dispatched transaction.
+* [Operate Sailor with a coding agent](getting-started/coding-agent.md) — the flagship workflow: scaffold, open in your assistant, say **start**.
+* Install and run: [npm package](packages.md) · [Docker](docker.md) · [Skills](skills.md) · [Dashboard](dashboard.md) · [Shipyard](shipyard.md).
+* Chains: [Deployment addresses](../protocol/reference/addresses.md) · [Multi-chain operation](guides/multi-chain.md).
+* Reference: [Concepts](concepts/) · [Guides](guides/) · [CLI reference](cli/) · [SDK reference](sdk/) · [Security](security.md) · [Troubleshooting](troubleshooting.md).
+* Community: [Discord](https://discord.gg/9GsxPsHzRv) · [X](https://x.com/SaildotMoney) · [GitHub](https://github.com/sail-money) · [npm](https://www.npmjs.com/package/@sail.money/sailor).
 
 {% hint style="warning" %}
 The Sail Protocol trusted core and its shared templates **as they stood at the review** were reviewed by [Octane](https://www.octane.security), an AI source-code security scanner, across three analyses; the final analysis found no critical- or high-severity findings. The later `WithdrawPermission` v2 rewrite is **not** covered by it. That review covers the protocol contracts — **not** this harness. A security review is not a guarantee of correctness — do not operate with funds you are not prepared to lose. See [Security](security.md).

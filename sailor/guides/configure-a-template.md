@@ -67,4 +67,4 @@ These two are easy to confuse; they do opposite things:
 
 So: *"exit this vault position"* → `WithdrawPermission`. *"get my money out of the SMA"* / *"send held tokens to my wallet"* → `TransferPermission` (with a one-entry recipient allowlist). An exit and a payout are two permissions, not one.
 
-`WithdrawPermission` was rewritten in place (v2) and carries some non-obvious rules — the `redeem` cap counts shares not assets, the token allowlist binds only the Aave path, and Compound/Aave v4 are deliberately unsupported. Its full spec is on its own page: [WithdrawPermission (v2)](withdraw-permission.md).
+`WithdrawPermission` carries a few non-obvious rules — the `redeem` cap counts shares, not assets; the token allowlist binds only the Aave path; and Compound / Aave v4 are deliberately unsupported. The `sailor-template-withdraw` skill has the exact schema.

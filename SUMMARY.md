@@ -20,7 +20,6 @@
   * [Deploy & predict an SMA](sailor/guides/deploy-sma.md)
   * [Build & register a mandate](sailor/guides/build-a-mandate.md)
   * [Configure a shared template](sailor/guides/configure-a-template.md)
-  * [WithdrawPermission (v2)](sailor/guides/withdraw-permission.md)
   * [Run a strategy & dispatch](sailor/guides/run-a-strategy.md)
   * [Simulate before going live](sailor/guides/simulate.md)
   * [Multi-chain operation](sailor/guides/multi-chain.md)

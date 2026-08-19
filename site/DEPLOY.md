@@ -24,74 +24,43 @@ The build reads the repo's root markdown as its source, so the whole repo must b
 ## Prerequisites
 
 - **Contributor** access to the Azure subscription where `sail.money` is hosted (reuse the same one).
-- **Admin** on the `sail-money/sail-docs` GitHub repo (so the SWA wizard can add its deploy workflow + secret).
+- **Admin** on the `sail-money/sail-docs` GitHub repo (to add the `AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS` secret).
 - Access to the **DNS zone for `sail.money`** (to repoint the `docs` record at cutover).
 
-## Step 1 — Create the Static Web App (CI/CD from `main`)
+## Create the Static Web App and wire the deploy token
+
+This repo already ships its own workflow at
+[`.github/workflows/azure-static-web-app.yml`](../.github/workflows/azure-static-web-app.yml)
+(same multi-environment pattern as `sail-money-landing-page`: tags -> production, `main` -> dev,
+manual dispatch -> test, PRs -> per-PR preview + teardown on close). You do not need the Portal
+wizard to generate a workflow — just create the SWA resource and give the existing workflow its
+deployment token.
+
+**Azure SWA resource requirements:**
+
+| Setting | Value |
+|---|---|
+| Resource type | Static Web App |
+| Plan | **Standard** (required for multiple named environments/staging slots beyond PR previews; Free also supports custom domains but caps staging environments) |
+| Deployment source | Choose **"Other"** (not GitHub-managed CI/CD) so Azure does not overwrite this repo's workflow with its own |
+| App location | `site` |
+| Api location | *(blank — no API/functions)* |
+| Output location | `dist` (resolves to `site/dist`, since App location is `site`) |
+| Node version | ≥ 20.3 (matches `site/.nvmrc` + `engines`) |
 
 1. Azure Portal → **Create a resource → Static Web App**.
-2. Basics:
-   - Plan: **Standard** (recommended; Free also supports custom domains).
-   - Source: **GitHub** → authorize → Org `sail-money`, Repo `sail-docs`, Branch `main`.
-3. Build details:
-   - Build Presets: **Custom** (or "Astro" if offered).
-   - **App location:** `site`
-   - **Api location:** *(leave blank)*
-   - **Output location:** `dist`
-4. Create. Azure commits a workflow at `.github/workflows/azure-static-web-apps-*.yml` and adds a
-   deployment-token secret. The first build runs automatically.
+2. Basics: Plan **Standard**; Deployment source **Other** (skip the GitHub connection step —
+   this avoids Azure auto-committing a second, conflicting workflow file).
+3. Create the resource. Once provisioned, go to **Overview → Manage deployment token** and copy it.
+4. In the GitHub repo (`sail-money/sail-docs`) → **Settings → Secrets and variables → Actions**,
+   add a repository secret named `AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS` with that token value.
+   (The workflow file references this exact secret name — rename both together if you change it.)
+5. Push to `main` (or re-run the workflow manually via `workflow_dispatch`) to trigger the first
+   deploy to the `dev` environment.
 
-If the auto-generated workflow does not run the full build, confirm the deploy step has:
-
-```yaml
-app_location: "site"
-output_location: "dist"
-```
-
-No `api_location`. Oryx runs `npm install` then `npm run build` in `site/` (which runs the
-sync → astro build → clean-urls → llms pipeline).
-
-## Step 2 — Verify on the temporary Azure URL (before touching DNS)
-
-Azure gives you a `https://<name>.azurestaticapps.net` URL. Confirm all of this there **first**:
-
-- Home loads; **dark theme**, the **SAIL** wordmark, and the section banners render.
-- These five **load-bearing** paths return 200 (the marketing site deep-links them):
-  `/legal/privacy-policy` · `/legal/terms-of-use` · `/legal/disclaimer` ·
-  `/legal/open-source-licenses` · `/protocol/security`
-- Group-node redirects work: `/sailor` → `/sailor/sailor`, `/protocol` → `/protocol/protocol`,
-  `/legal` → `/legal/legal`.
-- `/llms.txt` and `/llms-full.txt` load as plain text.
-- **Search** (Cmd/Ctrl + K) opens and returns results.
-- Spot-check deep pages: `/sailor/shipyard`, `/protocol/reference/addresses`, `/for-ai-agents`.
-
-If a page 404s, it is almost always the App/Output location — re-check `site` / `dist`.
-
-## Step 3 — Cut over `docs.sail.money` (DNS)
-
-Do this only after Step 2 passes. GitBook keeps serving until DNS propagates, so it is safe.
-
-1. Static Web App → **Custom domains → Add** → `docs.sail.money`. Azure gives you a validation
-   target (a `CNAME` to your `*.azurestaticapps.net`, or a `TXT` for validation).
-2. In the `sail.money` DNS zone, **repoint the `docs` record** from GitBook's target to the Azure
-   target Azure shows you. (You are replacing the record GitBook currently uses.)
-3. Wait for validation to go green in Azure (minutes to a couple of hours). Azure auto-provisions
-   the TLS certificate.
-4. Once `https://docs.sail.money` serves the new site, **re-run the Step 2 checklist against
-   `docs.sail.money`** (especially the five load-bearing slugs and search).
-
-## Step 4 — After cutover
-
-- **Leave GitBook alone until `docs.sail.money` is confirmed fully live on Azure.** Then, optionally,
-  disconnect GitBook's Git Sync so it stops ingesting (Space → Settings → Git Sync → disconnect).
-  Do not delete the GitBook space yet — keep it as a rollback for a week or two.
-- From here, **any merge to `main` auto-deploys** via the SWA GitHub Action. Content is edited as
-  markdown in the repo root exactly as before.
-
-## Rollback
-
-If anything looks wrong after cutover: **point the `docs` DNS record back to GitBook's target.**
-GitBook is still connected and will serve immediately once DNS reverts. No data is lost.
+Oryx runs `npm install` then `npm run build` in `site/` (which runs the
+sync → astro build → clean-urls → llms pipeline). The whole repo is checked out (default
+`actions/checkout` behavior), which the build needs since it reads the root markdown as content.
 
 ## Notes / gotchas
 

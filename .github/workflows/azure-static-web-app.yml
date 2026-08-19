@@ -1,0 +1,106 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches: [main]      # -> dev environment
+    tags: ['v*']          # -> production environment
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [main]      # -> per-PR preview environment
+  workflow_dispatch:      # -> test environment (manual, from the Actions tab)
+
+# The deploy itself uses the Azure token; the PR-preview COMMENT uses GITHUB_TOKEN,
+# which defaults to read-only. Grant pull-requests: write so the action can comment.
+permissions:
+  contents: read
+  pull-requests: write
+
+# Environments on one SWA. Routing is controlled by each job's `if` +
+# `deployment_environment`; the SWA resource's "production branch" setting is
+# never consulted. Only production carries the custom domain (docs.sail.money);
+# the rest get <host>-<env>.azurestaticapps.net URLs. PR previews are auto-named per PR.
+#
+# App source lives in site/, so app_location is "site" and output_location "dist"
+# resolves to site/dist. The whole repo is still checked out (default checkout
+# behavior) because the Astro build reads the root markdown as its content source.
+
+jobs:
+  # PRODUCTION - version tags only. No deployment_environment => production env.
+  deploy_production:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    name: Deploy to production (tag)
+    steps:
+      - uses: actions/checkout@v3
+        with: { submodules: true, lfs: false }
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS }}
+          action: "upload"
+          app_location: "site"
+          api_location: ""
+          output_location: "dist"
+
+  # DEV - every push to main.
+  deploy_dev:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/main')
+    runs-on: ubuntu-latest
+    name: Deploy to dev (main)
+    steps:
+      - uses: actions/checkout@v3
+        with: { submodules: true, lfs: false }
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS }}
+          action: "upload"
+          app_location: "site"
+          api_location: ""
+          output_location: "dist"
+          deployment_environment: dev
+
+  # TEST - manual only. Run from the Actions tab against any branch you pick.
+  deploy_test:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    name: Deploy to test (manual)
+    steps:
+      - uses: actions/checkout@v3
+        with: { submodules: true, lfs: false }
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS }}
+          action: "upload"
+          app_location: "site"
+          api_location: ""
+          output_location: "dist"
+          deployment_environment: test
+
+  # PR PREVIEW - any open/updated PR to main gets its own preview env + URL.
+  # On a pull_request event the action auto-creates a per-PR preview (not prod)
+  # and, via repo_token, comments the link on the PR.
+  deploy_preview:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    name: Deploy PR preview
+    steps:
+      - uses: actions/checkout@v3
+        with: { submodules: true, lfs: false }
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}   # lets the action post the preview URL as a PR comment
+          action: "upload"
+          app_location: "site"
+          api_location: ""
+          output_location: "dist"
+
+  # PR PREVIEW TEARDOWN - removes the preview env when the PR closes or merges.
+  close_preview:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close PR preview
+    steps:
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_DOCS }}
+          action: "close"
